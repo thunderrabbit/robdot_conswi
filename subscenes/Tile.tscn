@@ -18,4 +18,8 @@ texture = ExtResource( 2 )
 
 [connection signal="input_event" from="." to="." method="_on_Area2D_input_event"]
 
+[connection signal="mouse_enter" from="." to="." method="_on_Area2D_mouse_enter"]
+
+[connection signal="mouse_exit" from="." to="." method="_on_Area2D_mouse_exit"]
+
 
