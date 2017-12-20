@@ -1,8 +1,9 @@
 extends Node2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+var Tile = preload("res://SubScenes/Tile.tscn")
 
 func _ready():
 	print("Started Game Scene")
+	var tile = Tile.instance()
+
+	add_child(tile)
