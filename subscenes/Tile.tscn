@@ -4,11 +4,10 @@
 [ext_resource path="res://images/items.png" type="Texture" id=2]
 [ext_resource path="res://subscenes/TileSprite.gd" type="Script" id=3]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 127.332, 28.9802 )
+extents = Vector2( 27.2655, 24.3967 )
 
 [node name="Area2D" type="Area2D"]
 
