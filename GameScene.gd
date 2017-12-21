@@ -34,8 +34,10 @@ func new_player():
 
 	player = Player.new()
 
+	# Allow player to add itself to the scene
 	player.set_game_scene(self)
-	
+
+	# Tell player what type it is
 	player.set_type(new_tile_type_ordinal)
 
 	# check game over
