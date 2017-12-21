@@ -15,15 +15,15 @@ func set_type(new_tile_type_ordinal):
 	for i in range(2):
 		# insantiate new Tile to be our player
 		var tile = Tile.instance()
-		
 		# randomly choose Tile type (dog, cat, pig, etc)
 		tile.set_tile_type(new_tile_type_ordinal)
-
 		# keep it in player_sprites so we can find them later
 		tile_y_shadow.append(tile)
-
 		# add Tile to scene
 		parent_scene.add_child(tile)
+
+	# remove collider from shadow so it ignores mouse
+	tile_y_shadow[1].get_node("CollisionShape2D").queue_free()
 
 func set_game_scene(game_scene):
 	parent_scene = game_scene
@@ -34,6 +34,7 @@ func set_position(player_position):
 	tile_y_shadow[0].set_pos(Helpers.slot_to_pixels(player_position))
 	tile_y_shadow[1].set_pos(Helpers.slot_to_pixels(Vector2(player_position.x, column_height(player_position.x))))   ## shadow
 	tile_y_shadow[1].get_node("TileSprite").set_modulate(Color(1,1,1, 0.3))
+
 	
 func column_height(column):
 	var height = Helpers.slots_down-1
