@@ -2,14 +2,17 @@ extends Node2D
 
 const level_format = "res://levels/%s_%s_%02d.gd"		# normal_welcome_01
 const Player = preload("res://SubScenes/Player.gd")
+const Buttons = preload("res://SubScenes/Buttons.gd")
 
 var player_position			# Vector2 of slot player is in
 var player					# Two (2) tiles: (player and shadow)
-
+var buttons					# Steering Pad / Start buttons
 func _ready():
+	buttons = Buttons.new()
 	print("Started Game Scene")
 	start_level(1)
 	new_player()
+
 
 func start_level(level_num):
 	var level_difficulty = "normal"
@@ -23,7 +26,8 @@ func start_level(level_num):
 	# TODO deal with the case that the current board is smaller then previous level
 	# in which case the slots_across will be too small to clear everything
 	Helpers.clear_game_board()
-
+	buttons.set_game_scene(self)
+	buttons.add_steering_pad()
 
 func new_player():
 	# new player will be a random of four colors
