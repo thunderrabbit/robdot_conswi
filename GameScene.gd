@@ -4,7 +4,7 @@ const level_format = "res://levels/%s_%s_%02d.gd"		# normal_welcome_01
 const Player = preload("res://SubScenes/Player.gd")
 const Buttons = preload("res://SubScenes/Buttons.gd")
 
-var GRAVITY_TIMEOUT = 10     # fake constant that will change with level
+var GRAVITY_TIMEOUT = 1     # fake constant that will change with level
 const MIN_TIME  = 0.07		# wait at least this long between processing inputs
 const MIN_DROP_MODE_TIME = 0.004
 
@@ -35,6 +35,7 @@ func start_level(level_num):
 	var current_level = load(level_name).new()		# load() gets a GDScript and new() instantiates it
 	Helpers.slots_across = current_level.level_width()
 	Helpers.slots_down = current_level.level_height()
+	GRAVITY_TIMEOUT = current_level.gravity_timeout
 
 	# TODO deal with the case that the current board is smaller then previous level
 	# in which case the slots_across will be too small to clear everything
