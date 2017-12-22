@@ -15,12 +15,12 @@ func _on_Area2D_input_event( viewport, event, shape_idx ):
 	and event.pressed:
 		if event.pos.x < self.get_pos().x:
 			print("pad left")
-			print("game scene is still",game_scene)
 			game_scene.input_x_direction = -1
 		else:
 			print("right")
-			print("game scene is still",game_scene)
 			game_scene.input_x_direction = 1
+	else:
+		game_scene.stop_moving()
 
 func _input(event):
 	var move_left = event.is_action_pressed("move_left")
@@ -34,16 +34,16 @@ func _input(event):
 						  )
 
 	if move_left:
-		print("pad move left")
+		print("key move left")
 		game_scene.input_x_direction = -1
 	elif move_right:
-		print("move right")
+		print("key move right")
 		game_scene.input_x_direction = 1
 	elif move_down:
-		print("move down")
+		print("key move down")
 		game_scene.input_y_direction = 1
 	elif drop_down:
-		print("drop down activated")
+		print("key drop down activated")
 		game_scene.drop_mode = true
 	elif stop_moving:
 #		print("stop moving")
