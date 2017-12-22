@@ -21,7 +21,7 @@
 * v0.0.9.3 move remaining pieces down
 * v0.0.9.4 add queue for upcoming pieces
 * v0.0.9.5 show upcoming pieces
-* v0.0.9.6 restore gravity speed
+* v0.0.9.6 use level 1 again?
 
 ### v.0.0.10.0   Pieces can be swiped
 
