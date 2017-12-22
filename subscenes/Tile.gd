@@ -15,8 +15,10 @@ func set_tile_type(my_tile_type):
 	my_sprite.set_tile_type(tile_type)
 
 func _on_Area2D_input_event( viewport, event, shape_idx ):
-	pass # rint("that happened ")
-
+	if event.type == InputEvent.MOUSE_BUTTON \
+	and event.button_index == BUTTON_LEFT \
+	and event.pressed:
+		print("mouse clicked ", Helpers.pixels_to_slot(get_pos()))
 
 func _on_Area2D_mouse_enter():
 	print("mouse entered ", Helpers.pixels_to_slot(get_pos()))
