@@ -8,4 +8,5 @@ func set_game_scene(game_scene):
 
 func add_steering_pad():
 	var steering_pad = SteeringPad.instance()
+	steering_pad.set_pos(Helpers.steering_pad_pixels())
 	parent_scene.add_child(steering_pad)
