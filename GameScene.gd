@@ -48,7 +48,16 @@ func start_level(level_num):
 
 func fill_game_board():
 	print("filling level")
-	pass
+
+	for across in range(Helpers.slots_across):
+		for down in range(Helpers.slots_down/2, Helpers.slots_down):
+			player_position = Vector2(across, down)
+	
+			# new player will be a random of four colors
+			var new_tile_type_ordinal = ItemDatabase.random_type()
+	
+			instantiatePlayer(new_tile_type_ordinal, player_position)
+			nail_player()
 
 func new_player():
 	# turn off drop mode
