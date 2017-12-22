@@ -1,5 +1,5 @@
 extends "NormalLevel.gd"
 
 func _init():
-	width = 5
+	width = 25
 	fill_level = true
