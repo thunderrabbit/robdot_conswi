@@ -35,6 +35,11 @@ func set_position(player_position):
 	tile_y_shadow[1].set_pos(Helpers.slot_to_pixels(Vector2(player_position.x, column_height(player_position.x))))   ## shadow
 	tile_y_shadow[1].get_node("TileSprite").set_modulate(Color(1,1,1, 0.3))
 
+# player has been nailed so it should animate or whatever
+func nail_player():
+	# remove player's shadow
+	tile_y_shadow[1].get_node("TileSprite").queue_free()
+	pass
 	
 func column_height(column):
 	var height = Helpers.slots_down-1

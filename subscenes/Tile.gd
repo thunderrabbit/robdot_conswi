@@ -1,5 +1,7 @@
 extends Area2D
 
+var is_a_game_piece = true		# helps detect sprites for group actions
+
 var tile_type
 var my_sprite
 
