@@ -22,7 +22,7 @@ var buttons					# Steering Pad / Start buttons
 func _ready():
 	buttons = Buttons.new()
 	print("Started Game Scene")
-	start_level(1)
+	start_level(0)
 	new_player()
 
 
