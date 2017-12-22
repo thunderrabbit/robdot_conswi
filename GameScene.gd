@@ -56,6 +56,11 @@ func new_player():
 	# new player will be a random of four colors
 	var new_tile_type_ordinal = ItemDatabase.random_type()
 
+	instantiatePlayer(new_tile_type_ordinal, player_position)
+	set_process(true)
+	start_gravity_timer()
+
+func instantiatePlayer(new_tile_type_ordinal, player_position):
 	player = Player.new()
 
 	# Allow player to add itself to the scene
@@ -66,8 +71,6 @@ func new_player():
 
 	# Move the player
 	player.set_position(player_position)
-	set_process(true)
-	start_gravity_timer()
 
 func game_over():
 	# gray out block sprites if existing
