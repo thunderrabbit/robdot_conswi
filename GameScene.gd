@@ -4,7 +4,7 @@ const level_format = "res://levels/%s_%s_%02d.gd"		# normal_welcome_01
 const Player = preload("res://SubScenes/Player.gd")
 
 var player_position			# Vector2 of slot player is in
-var player
+var player					# Two (2) tiles: (player and shadow)
 
 func _ready():
 	print("Started Game Scene")
