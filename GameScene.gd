@@ -187,3 +187,14 @@ func nail_player():
 	# tell board{} where the player is
 	Helpers.board[Vector2(player_position.x, player_position.y)] = true		## this was the piece, but it just needs to be not null
 
+func piece_clicked(position, piece_type):
+	print("piece clicked", position, piece_type)
+
+func piece_unclicked(position, piece_type):
+	print("piece unclicked", position, piece_type)
+
+func piece_entered(position, piece_type):
+	print("piece entered", position, piece_type)
+
+func piece_exited(position, piece_type):
+	print("piece exited", position, piece_type)
