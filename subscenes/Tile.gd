@@ -19,8 +19,8 @@ func _on_Area2D_input_event( viewport, event, shape_idx ):
 
 
 func _on_Area2D_mouse_enter():
-	print("mouse entered ", get_parent().player_position)
+	print("mouse entered ", Helpers.pixels_to_slot(get_pos()))
 
 
 func _on_Area2D_mouse_exit():
-	print("mouse exited ", get_parent().player_position)
+	print("mouse exited ", Helpers.pixels_to_slot(get_pos()))
