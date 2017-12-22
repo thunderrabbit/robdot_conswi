@@ -35,11 +35,20 @@ func start_level(level_num):
 	var current_level = load(level_name).new()		# load() gets a GDScript and new() instantiates it
 	Helpers.slots_across = current_level.level_width()
 	Helpers.slots_down = current_level.level_height()
+
 	# TODO deal with the case that the current board is smaller then previous level
 	# in which case the slots_across will be too small to clear everything
 	Helpers.clear_game_board()
+
+	if current_level.fill_level:
+		fill_game_board()
+
 	buttons.set_game_scene(self)
 	buttons.add_steering_pad()
+
+func fill_game_board():
+	print("filling level")
+	pass
 
 func new_player():
 	# turn off drop mode
