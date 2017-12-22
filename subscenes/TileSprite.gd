@@ -4,7 +4,6 @@ const ICON_SIZE = 64
 const RAW_LENGTH = 64
 
 func set_tile_type(my_tile_type):
-	print("sprite is ", my_tile_type)
 	var icon = my_tile_type   # Fack figure out Database later	ItemDatabase.get_item_sprite(my_type_ordinal)
 #	set_pos(get_size()/2)
 #	set_scale(Vector2(1,1))

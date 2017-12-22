@@ -13,8 +13,6 @@ func set_tile_type(my_tile_type):
 	tile_type = my_tile_type
 	my_sprite = get_node("TileSprite") # gets NIL if run in _ready
 	my_sprite.set_tile_type(tile_type)
-	print("I am a Tile ", tile_type)
-
 
 func _on_Area2D_input_event( viewport, event, shape_idx ):
 	pass # rint("that happened ")

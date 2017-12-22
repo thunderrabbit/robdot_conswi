@@ -4,7 +4,6 @@ var game_scene
 
 func set_game_scene(my_game_scene):
 	game_scene = my_game_scene
-	print("game scene is now",game_scene)
 	
 func _ready():
 	set_process_input(true)
