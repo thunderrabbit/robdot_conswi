@@ -67,6 +67,7 @@ func new_player():
 	# Move the player
 	player.set_position(player_position)
 	set_process(true)
+	start_gravity_timer()
 
 func game_over():
 	# gray out block sprites if existing
@@ -136,6 +137,18 @@ func stop_moving():
 	input_x_direction = 0
 	input_y_direction = 0
 
+func _gravity_says_its_time():
+	gravity_called = true
+
+func start_gravity_timer():
+	var le_timer = get_node("Timer")
+	le_timer.set_wait_time(GRAVITY_TIMEOUT)
+	le_timer.start()
+
+func stop_gravity_timer():
+	var le_timer = get_node("Timer")
+	le_timer.stop()
+
 # move player
 func move_player(x, y):
 	player_position.x += x
@@ -146,6 +159,7 @@ func move_player(x, y):
 func nail_player():
 	set_process(false)			# deactivate _process
 	set_process_input(false)	# deactivate _input
+	stop_gravity_timer()
 	player.nail_player()		# let player do what it needs when it's nailed
 
 	# tell board{} where the player is
