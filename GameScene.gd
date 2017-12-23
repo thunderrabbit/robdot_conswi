@@ -8,6 +8,8 @@ var GRAVITY_TIMEOUT = 1     # fake constant that will change with level
 const MIN_TIME  = 0.07		# wait at least this long between processing inputs
 const MIN_DROP_MODE_TIME = 0.004
 
+var current_level	= null	# will hold level definition
+
 var elapsed_time = 10		# pretend it has been 10 seconds so input can definitely be processed upon start
 
 var input_x_direction	# -1 = left; 0 = stay; 1 = right
@@ -36,7 +38,7 @@ func start_level(level_num):
 	var level_name = level_format % [level_difficulty, level_group, level_num]
 	print("starting Level ", level_name)
 
-	var current_level = load(level_name).new()		# load() gets a GDScript and new() instantiates it
+	current_level = load(level_name).new()		# load() gets a GDScript and new() instantiates it
 	Helpers.slots_across = current_level.level_width()
 	Helpers.slots_down = current_level.level_height()
 	GRAVITY_TIMEOUT = current_level.gravity_timeout
