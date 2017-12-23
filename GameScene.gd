@@ -19,6 +19,10 @@ var player_position			# Vector2 of slot player is in
 var player					# Two (2) tiles: (player and shadow)
 var buttons					# Steering Pad / Start buttons
 
+var swipe_color = 0				# the color of the current swipe
+var swipe_mode= false			# if true, then we are swiping
+var swipe_array = []			# the pieces in the swipe
+
 func _ready():
 	buttons = Buttons.new()
 	print("Started Game Scene")
@@ -188,13 +192,38 @@ func nail_player():
 	Helpers.board[Vector2(player_position.x, player_position.y)] = player		## this is the piece so we can find it later
 
 func piece_clicked(position, piece_type):
+	swipe_color = piece_type
+	swipe_mode = true
+	swipe_array.append(position)
+	Helpers.board[position].highlight()
 	print("piece clicked", position, piece_type)
 
 func piece_unclicked(position, piece_type):
 	print("piece unclicked", position, piece_type)
 
 func piece_entered(position, piece_type):
+	if not swipe_mode:
+		print("not swipe mode")
+		return
+	if swipe_color != piece_type:
+		print(piece_type, " is not color ", swipe_color)
+		return
+	if not adjacent(swipe_array.back(), position):
+		print("not adjacent")
+	swipe_array.append(position)
+	Helpers.board[position].highlight()
 	print("piece entered", position, piece_type)
+
+func adjacent(pos1, pos2):
+	var xOffsets = [ 0, 1, 0, -1]
+	var yOffsets = [-1, 0, 1,  0]
+
+	var i = 0
+	while i < xOffsets.size():
+		if pos1 == Vector2(pos2.x + xOffsets[i], pos2.y + yOffsets[i]):
+			return true
+		i = i + 1
+	return false
 
 func piece_exited(position, piece_type):
 	print("piece exited", position, piece_type)
