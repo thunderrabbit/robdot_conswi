@@ -53,3 +53,7 @@ func highlight():
 
 func unhighlight():
 	tile_y_shadow[0].my_sprite.unhighlight()
+
+func remove_yourself():
+	Helpers.board[my_position] = null
+	tile_y_shadow[0].queue_free()

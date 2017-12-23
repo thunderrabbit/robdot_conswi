@@ -204,7 +204,10 @@ func piece_unclicked(position, piece_type):
 	if swipe_array.size() < current_level.min_swipe_len:
 		for pos in swipe_array:
 			Helpers.board[pos].unhighlight()
-		swipe_array.clear()
+	else:
+		for pos in swipe_array:
+			Helpers.board[pos].remove_yourself()
+	swipe_array.clear()
 	swipe_mode = false
 	print("piece unclicked", position, piece_type)
 
