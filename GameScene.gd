@@ -199,6 +199,7 @@ func piece_clicked(position, piece_type):
 	print("piece clicked", position, piece_type)
 
 func piece_unclicked(position, piece_type):
+	swipe_mode = false
 	print("piece unclicked", position, piece_type)
 
 func piece_entered(position, piece_type):
