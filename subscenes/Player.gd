@@ -33,7 +33,9 @@ func set_position(player_position):
 	my_position = player_position
 	tile_y_shadow[0].set_pos(Helpers.slot_to_pixels(player_position))
 	tile_y_shadow[1].set_pos(Helpers.slot_to_pixels(Vector2(player_position.x, column_height(player_position.x))))   ## shadow
-	tile_y_shadow[1].get_node("TileSprite").set_modulate(Color(1,1,1, 0.3))
+	var shadow = tile_y_shadow[1].get_node("TileSprite")
+	if shadow != null:
+		shadow.set_modulate(Color(1,1,1, 0.3))
 
 # player has been nailed so it should animate or whatever
 func nail_player():
@@ -47,6 +49,14 @@ func column_height(column):
 		if Helpers.board[Vector2(column, i)] != null:
 			height = i-1
 	return height
+
+func move_down_if_room():
+	var below_me = my_position + Vector2(0,1)
+	if below_me.y < 10:
+		if Helpers.board[below_me] == null:
+			Helpers.board[below_me] = self
+			Helpers.board[my_position] = null
+			set_position(below_me)
 
 func highlight():
 	tile_y_shadow[0].my_sprite.highlight()

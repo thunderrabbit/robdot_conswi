@@ -7,6 +7,7 @@ const Buttons = preload("res://SubScenes/Buttons.gd")
 var GRAVITY_TIMEOUT = 1     # fake constant that will change with level
 const MIN_TIME  = 0.07		# wait at least this long between processing inputs
 const MIN_DROP_MODE_TIME = 0.004
+const MAGNETISM_TIME = 0.004
 
 var current_level	= null	# will hold level definition
 
@@ -30,6 +31,7 @@ func _ready():
 	print("Started Game Scene")
 	start_level(0)
 	new_player()
+	get_node("Magnetism").connect("timeout", get_node("/root/Helpers"), "magnetism_called", [])
 
 
 func start_level(level_num):
@@ -47,6 +49,9 @@ func start_level(level_num):
 	# in which case the slots_across will be too small to clear everything
 	Helpers.clear_game_board()
 
+	# magnetism makes the nailed pieces fall (all pieces in board[])
+	start_magnetism()
+	
 	if current_level.fill_level:
 		fill_game_board()
 
@@ -99,6 +104,7 @@ func instantiatePlayer(new_tile_type_ordinal, player_position):
 
 func game_over():
 	# gray out block sprites if existing
+	stop_magnetism()
 	var existing_sprites = get_node(".").get_children()
 	for sprite in existing_sprites:
 		# do not remove slots from board
@@ -177,6 +183,15 @@ func stop_gravity_timer():
 	var le_timer = get_node("Timer")
 	le_timer.stop()
 
+func start_magnetism():
+	var magneto = get_node("Magnetism")
+	magneto.set_wait_time(MAGNETISM_TIME)
+	magneto.start()
+
+func stop_magnetism():
+	var magneto = get_node("Magnetism")
+	magneto.stop()
+
 # move player
 func move_player(x, y):
 	player_position.x += x
@@ -206,7 +221,8 @@ func piece_unclicked(position, piece_type):
 			Helpers.board[pos].unhighlight()
 	else:
 		for pos in swipe_array:
-			Helpers.board[pos].remove_yourself()
+			if Helpers.board[pos] != null:
+				Helpers.board[pos].remove_yourself()
 	swipe_array.clear()
 	swipe_mode = false
 	print("piece unclicked", position, piece_type)

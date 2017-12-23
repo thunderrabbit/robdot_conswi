@@ -21,6 +21,12 @@ func clear_game_board():
 		for j in range(slots_down):
 			board[Vector2(i, j)] = null
 
+func magnetism_called():
+	for pos in board:
+		var sprite = board[pos]
+		if sprite != null:
+			sprite.move_down_if_room()
+
 func pixels_to_slot(pixels):
 	return Vector2((pixels.x - G.GLOBALleft_space) / (G.SLOT_SIZE + G.GLOBALslot_gap_h),
 					(pixels.y - G.GLOBALtop_space) / (G.SLOT_SIZE + G.GLOBALslot_gap_v))
