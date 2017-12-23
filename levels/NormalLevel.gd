@@ -6,6 +6,8 @@ var fill_level = false
 var gravity_timeout = 1
 var min_swipe_len = 3
 
+var queue_len = 3
+
 func level_width():
 	return width
 
