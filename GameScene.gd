@@ -185,7 +185,7 @@ func nail_player():
 	player.nail_player()		# let player do what it needs when it's nailed
 
 	# tell board{} where the player is
-	Helpers.board[Vector2(player_position.x, player_position.y)] = true		## this was the piece, but it just needs to be not null
+	Helpers.board[Vector2(player_position.x, player_position.y)] = player		## this is the piece so we can find it later
 
 func piece_clicked(position, piece_type):
 	print("piece clicked", position, piece_type)
