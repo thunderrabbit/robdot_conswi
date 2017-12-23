@@ -2,6 +2,9 @@ extends Node
 
 var board = {}			# board of slots_across x slots_down
 
+var queue_upcoming = []			# queue of upcoming pieces
+var queue_length = 0			# number of pieces to show in the queue
+
 # width and height of level board
 var slots_across
 var slots_down
