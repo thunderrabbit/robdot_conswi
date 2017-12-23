@@ -210,6 +210,7 @@ func piece_entered(position, piece_type):
 		return
 	if not adjacent(swipe_array.back(), position):
 		print("not adjacent")
+		return
 	swipe_array.append(position)
 	Helpers.board[position].highlight()
 	print("piece entered", position, piece_type)
@@ -219,8 +220,10 @@ func adjacent(pos1, pos2):
 	var yOffsets = [-1, 0, 1,  0]
 
 	var i = 0
+	var offset_pos2 = Vector2(-99,-99)
 	while i < xOffsets.size():
-		if pos1 == Vector2(pos2.x + xOffsets[i], pos2.y + yOffsets[i]):
+		offset_pos2 = Vector2(pos2.x + xOffsets[i], pos2.y + yOffsets[i])
+		if pos1 == offset_pos2:
 			return true
 		i = i + 1
 	return false
