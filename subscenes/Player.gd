@@ -47,3 +47,9 @@ func column_height(column):
 		if Helpers.board[Vector2(column, i)] != null:
 			height = i-1
 	return height
+
+func highlight():
+	tile_y_shadow[0].my_sprite.highlight()
+
+func unhighlight():
+	tile_y_shadow[0].my_sprite.unhighlight()

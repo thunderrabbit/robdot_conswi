@@ -10,4 +10,10 @@ func set_tile_type(my_tile_type):
 	set_texture(preload("res://images/items.png"))
 	set_region(true)
 	set_region_rect(Rect2(ICON_SIZE * (icon % RAW_LENGTH), ICON_SIZE * (icon / RAW_LENGTH), ICON_SIZE, ICON_SIZE))
-	
+
+func highlight():
+	set_modulate(Color(.1,.1,.1, 1))
+
+func unhighlight():
+	set_modulate(Color(1,1,1,1))
+
