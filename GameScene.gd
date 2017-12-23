@@ -216,6 +216,7 @@ func piece_entered(position, piece_type):
 	print("piece entered", position, piece_type)
 
 func adjacent(pos1, pos2):
+	# https://www.gamedev.net/forums/topic/516685-best-algorithm-to-find-adjacent-tiles/?tab=comments#comment-4359055
 	var xOffsets = [ 0, 1, 0, -1]
 	var yOffsets = [-1, 0, 1,  0]
 
