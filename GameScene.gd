@@ -208,12 +208,20 @@ func piece_entered(position, piece_type):
 	if swipe_color != piece_type:
 		print(piece_type, " is not color ", swipe_color)
 		return
+	# ensure the position is adjacent to the last item in the array
 	if not adjacent(swipe_array.back(), position):
 		print("not adjacent")
 		return
-	swipe_array.append(position)
-	Helpers.board[position].highlight()
-	print("piece entered", position, piece_type)
+	if position == swipe_array[swipe_array.size()-2]:
+		# we back tracked
+		var old_last = swipe_array.back()
+		swipe_array.pop_back()
+		Helpers.board[old_last].unhighlight()
+		print("piece wiped", old_last)
+	else:
+		swipe_array.append(position)
+		Helpers.board[position].highlight()
+		print("piece entered", position, piece_type)
 
 func adjacent(pos1, pos2):
 	# https://www.gamedev.net/forums/topic/516685-best-algorithm-to-find-adjacent-tiles/?tab=comments#comment-4359055
