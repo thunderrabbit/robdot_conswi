@@ -1,7 +1,6 @@
 extends Node2D
 
 const level_format = "res://levels/%s_%s_%02d.gd"		# normal_welcome_01
-const Player = preload("res://SubScenes/Player.gd")
 const Buttons = preload("res://SubScenes/Buttons.gd")
 
 var GRAVITY_TIMEOUT = 1     # fake constant that will change with level
@@ -28,6 +27,7 @@ var swipe_array = []			# the pieces in the swipe
 
 func _ready():
 	buttons = Buttons.new()
+	Helpers.game_scene = self		# so Players know where to appear
 	print("Started Game Scene")
 	start_level(0)
 	new_player()
@@ -69,7 +69,7 @@ func fill_game_board():
 			# new player will be a random of four colors
 			var new_tile_type_ordinal = ItemDatabase.random_type()
 	
-			instantiatePlayer(new_tile_type_ordinal, player_position)
+			Helpers.instantiatePlayer(new_tile_type_ordinal, player_position)
 			nail_player()
 
 func new_player():
@@ -87,21 +87,10 @@ func new_player():
 	# new player will be a random of four colors
 	var new_tile_type_ordinal = ItemDatabase.random_type()
 
-	instantiatePlayer(new_tile_type_ordinal, player_position)
+	Helpers.instantiatePlayer(new_tile_type_ordinal, player_position)
 	set_process(true)
 	start_gravity_timer()
 
-func instantiatePlayer(new_tile_type_ordinal, player_position):
-	player = Player.new()
-
-	# Allow player to add itself to the scene
-	player.set_game_scene(self)
-
-	# Tell player what type it is
-	player.set_type(new_tile_type_ordinal)
-
-	# Move the player
-	player.set_position(player_position)
 
 func game_over():
 	# gray out block sprites if existing

@@ -1,5 +1,8 @@
 extends Node
 
+const Player = preload("res://SubScenes/Player.gd")
+
+var game_scene			# so we know where Players should appear
 var board = {}			# board of slots_across x slots_down
 
 var queue_upcoming = []			# queue of upcoming pieces
@@ -29,6 +32,18 @@ func magnetism_called():
 		var sprite = board[pos]
 		if sprite != null:
 			sprite.move_down_if_room()
+
+func instantiatePlayer(new_tile_type_ordinal, player_position):
+	game_scene.player = Player.new()
+
+	# Allow player to add itself to the scene
+	game_scene.player.set_game_scene(game_scene)
+
+	# Tell player what type it is
+	game_scene.player.set_type(new_tile_type_ordinal)
+
+	# Move the player
+	game_scene.player.set_position(player_position)
 
 func pixels_to_slot(pixels):
 	return Vector2((pixels.x - G.GLOBALleft_space) / (G.SLOT_SIZE + G.GLOBALslot_gap_h),
