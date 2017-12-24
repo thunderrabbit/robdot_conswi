@@ -10,6 +10,7 @@ var should_show_shadow = false
 func _ready():
 	# array to hold both parts of our player
 	tile_y_shadow = []
+	set_process_input(false)
 
 func set_type(new_tile_type_ordinal):
 	# instantiate 1 Tile each for our player and shadow.  i is unused here
@@ -44,6 +45,7 @@ func set_position(player_position):
 # player has been nailed so it should animate or whatever
 func nail_player():
 	# remove player's shadow
+	tile_y_shadow[0].become_swipable()
 	tile_y_shadow[1].get_node("TileSprite").queue_free()
 	pass
 	
