@@ -34,10 +34,8 @@ func _on_Area2D_input_event( viewport, event, shape_idx ):
 	if event.type == InputEvent.MOUSE_BUTTON \
 	and event.button_index == BUTTON_LEFT:
 		if event.pressed:
-#			print("mouse clicked ", Helpers.pixels_to_slot(get_pos()))
 			emit_signal("clicked", Helpers.pixels_to_slot(get_pos()), tile_type)
 		else: # not event.pressed:
-			print("mouse unclicked ", Helpers.pixels_to_slot(get_pos()))
 			emit_signal("unclicked")
 
 func _on_Area2D_mouse_enter():
