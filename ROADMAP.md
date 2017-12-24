@@ -1,5 +1,14 @@
 ## Roadmap
 
+How to download:
+1. Get source:
+   git clone https://github.com/thunderrabbit/robdot_conswi
+2. Get Godot engine (optional): https://godotengine.org/download
+   a. Extract and run Godot.app.
+   b. Open robdot_conswi project.
+
+
+
 ### v0.0.9.0 Tiles can be highlighted
 
 * v0.0.9.4 add queue for upcoming pieces
