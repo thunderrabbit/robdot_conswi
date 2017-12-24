@@ -25,7 +25,7 @@ wait_time = 1.0
 one_shot = false
 autostart = false
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Orphan_Swipe_Catcher" type="Area2D" parent="."]
 
 transform/pos = Vector2( 1040.32, 626.573 )
 transform/scale = Vector2( 13.6399, 23.388 )
@@ -38,7 +38,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Orphan_Swipe_Catcher"]
 
 shape = SubResource( 1 )
 trigger = false
