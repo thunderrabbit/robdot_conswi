@@ -112,6 +112,16 @@ func level_over():
 			if sprite.get_node("TileSprite") != null:
 				sprite.get_node("TileSprite").set_modulate(Color(0.1,0.1,0.1, 1))
 
+# this is only to handle orphaned swipes
+func _on_Orphan_Swipe_Catcher_input_event( viewport, event, shape_idx ):
+	if event.type == InputEvent.MOUSE_BUTTON \
+	and event.button_index == BUTTON_LEFT:
+		if event.pressed:
+			print("mouse clicked ", Helpers.pixels_to_slot(get_pos()))
+		else: # not event.pressed:
+			print("mouse unclicked")
+			piece_unclicked("need not","send thises")
+
 func _process(delta):
 
 	if gravity_called:

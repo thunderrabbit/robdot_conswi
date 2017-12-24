@@ -46,4 +46,6 @@ _update_shape_index = 0
 
 [connection signal="timeout" from="Timer" to="." method="_gravity_says_its_time"]
 
+[connection signal="input_event" from="Orphan_Swipe_Catcher" to="." method="_on_Orphan_Swipe_Catcher_input_event"]
+
 
