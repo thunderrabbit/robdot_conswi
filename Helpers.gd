@@ -42,7 +42,15 @@ func queue_wo_fill():
 		new_player.set_game_scene(game_scene)
 		# Tell player what type it is
 		new_player.set_type(new_tile_type_ordinal)
+
 		queue_upcoming.append(new_player)
+
+	# Display queued pieces on top right
+	var x = slots_across-queue_length
+	for tile in queue_upcoming:
+		tile.set_position(Vector2(x,0))
+		x = x+1		# TODO turn off shadows
+
 
 func queue_next():
 	if queue_upcoming.size() < queue_length:

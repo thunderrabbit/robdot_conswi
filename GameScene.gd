@@ -48,7 +48,7 @@ func start_level(level_num):
 	Helpers.slots_across = current_level.level_width()
 	Helpers.slots_down = current_level.level_height()
 	GRAVITY_TIMEOUT = current_level.gravity_timeout
-	Helpers.queue_length = current_level.queue_len
+	Helpers.queue_length = current_level.queue_len + 1 # +1 accounts for current player)
 
 	# TODO deal with the case that the current board is smaller then previous level
 	# in which case the slots_across will be too small to clear everything
