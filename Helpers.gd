@@ -33,17 +33,27 @@ func magnetism_called():
 		if sprite != null:
 			sprite.move_down_if_room()
 
+func queue_wo_fill():
+	while queue_upcoming.size() < queue_length:
+		# new player will be a random of four colors
+		var new_tile_type_ordinal = ItemDatabase.random_type()		
+		var new_player = Player.new()
+		# Allow player to add itself to the scene
+		new_player.set_game_scene(game_scene)
+		# Tell player what type it is
+		new_player.set_type(new_tile_type_ordinal)
+		queue_upcoming.append(new_player)
+
+func queue_next():
+	if queue_upcoming.size() < queue_length:
+		queue_wo_fill()
+	var next_piece = queue_upcoming.front()
+	queue_upcoming.pop_front()
+	return next_piece
+
 func instantiatePlayer(player_position):
-	# new player will be a random of four colors
-	var new_tile_type_ordinal = ItemDatabase.random_type()
 
-	game_scene.player = Player.new()
-
-	# Allow player to add itself to the scene
-	game_scene.player.set_game_scene(game_scene)
-
-	# Tell player what type it is
-	game_scene.player.set_type(new_tile_type_ordinal)
+	game_scene.player = queue_next()
 
 	# Move the player
 	game_scene.player.set_position(player_position)
