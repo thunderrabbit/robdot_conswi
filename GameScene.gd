@@ -95,7 +95,8 @@ func new_player():
 		return
 
 	Helpers.instantiatePlayer(player_position)
-	set_process(true)
+	player.set_show_shadow(true)
+	set_process(true)		# allows players to be moved
 	start_gravity_timer()
 
 
@@ -197,8 +198,8 @@ func move_player(x, y):
 
 # nail player to board
 func nail_player():
-	set_process(false)			# deactivate _process
-	set_process_input(false)	# deactivate _input
+	set_process(false)			# disable motion until next player is created
+	set_process_input(false)	# ignore touches until next player is created
 	stop_gravity_timer()
 	player.nail_player()		# let player do what it needs when it's nailed
 
