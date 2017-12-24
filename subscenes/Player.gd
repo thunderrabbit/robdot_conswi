@@ -5,6 +5,7 @@ var Tile = preload("res://SubScenes/Tile.tscn")
 var tile_y_shadow = []	# Will hold the player and shadow while in motion
 var parent_scene
 var my_position
+var should_show_shadow = false
 
 func _ready():
 	# array to hold both parts of our player
@@ -35,7 +36,10 @@ func set_position(player_position):
 	tile_y_shadow[1].set_pos(Helpers.slot_to_pixels(Vector2(player_position.x, column_height(player_position.x))))   ## shadow
 	var shadow = tile_y_shadow[1].get_node("TileSprite")
 	if shadow != null:
-		shadow.set_modulate(Color(1,1,1, 0.3))
+		if should_show_shadow:
+			shadow.set_modulate(Color(1,1,1, 0.3))
+		else:
+			shadow.set_modulate(Color(0,0,0,0))
 
 # player has been nailed so it should animate or whatever
 func nail_player():
@@ -57,6 +61,11 @@ func move_down_if_room():
 			Helpers.board[below_me] = self
 			Helpers.board[my_position] = null
 			set_position(below_me)
+
+func set_show_shadow(should_i):
+	should_show_shadow = should_i
+	# set position forces shdadow to show up or not
+	set_position(my_position)
 
 func highlight():
 	tile_y_shadow[0].my_sprite.highlight()

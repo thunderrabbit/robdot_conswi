@@ -95,6 +95,7 @@ func new_player():
 		return
 
 	Helpers.instantiatePlayer(player_position)
+	player.set_show_shadow(true)
 	set_process(true)
 	start_gravity_timer()
 
