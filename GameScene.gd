@@ -241,7 +241,7 @@ func piece_entered(position, piece_type):
 		var old_last = swipe_array.back()
 		swipe_array.pop_back()
 		Helpers.board[old_last].unhighlight()
-		print("piece wiped", old_last)
+		print("piece backtracked", old_last)
 	else:
 		swipe_array.append(position)
 		Helpers.board[position].highlight()
