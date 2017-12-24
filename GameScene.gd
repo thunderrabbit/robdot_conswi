@@ -76,10 +76,8 @@ func fill_game_board():
 		for down in range(Helpers.slots_down/2, Helpers.slots_down):
 			player_position = Vector2(across, down)
 	
-			# new player will be a random of four colors
-			var new_tile_type_ordinal = ItemDatabase.random_type()
-	
-			Helpers.instantiatePlayer(new_tile_type_ordinal, player_position)
+
+			Helpers.instantiatePlayer(player_position)
 
 			# lock player into position on Helpers.board{}
 			nail_player()
@@ -96,10 +94,7 @@ func new_player():
 		game_over()
 		return
 
-	# new player will be a random of four colors
-	var new_tile_type_ordinal = ItemDatabase.random_type()
-
-	Helpers.instantiatePlayer(new_tile_type_ordinal, player_position)
+	Helpers.instantiatePlayer(player_position)
 	set_process(true)
 	start_gravity_timer()
 

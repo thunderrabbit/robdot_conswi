@@ -33,7 +33,10 @@ func magnetism_called():
 		if sprite != null:
 			sprite.move_down_if_room()
 
-func instantiatePlayer(new_tile_type_ordinal, player_position):
+func instantiatePlayer(player_position):
+	# new player will be a random of four colors
+	var new_tile_type_ordinal = ItemDatabase.random_type()
+
 	game_scene.player = Player.new()
 
 	# Allow player to add itself to the scene
