@@ -8,6 +8,9 @@ func set_game_scene(my_game_scene):
 func _ready():
 	set_process_input(true)
 
+# TODO: add mouse MOVEMENT detection and allow swipe to quickly move player left-right-down
+# http://docs.godotengine.org/en/stable/learning/features/inputs/mouse_and_input_coordinates.html
+# Start with swipe down as it will be identical to "drop_down" action in _input()
 func _on_Area2D_input_event( viewport, event, shape_idx ):
 	if event.type == InputEvent.MOUSE_BUTTON \
 	and event.button_index == BUTTON_LEFT \
@@ -42,6 +45,7 @@ func _input(event):
 		print("key move down")
 		game_scene.input_y_direction = 1
 	elif drop_down:
+		# dropdown puts player into freefall, which he can guide with left-right keys.
 		print("key drop down activated")
 		game_scene.drop_mode = true
 	elif stop_moving:

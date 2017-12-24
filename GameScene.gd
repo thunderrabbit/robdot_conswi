@@ -3,9 +3,11 @@ extends Node2D
 const level_format = "res://levels/%s_%s_%02d.gd"		# normal_welcome_01
 const Buttons = preload("res://SubScenes/Buttons.gd")
 
+# gravity is what pulls the piece down slowly
 var GRAVITY_TIMEOUT = 1     # fake constant that will change with level
 const MIN_TIME  = 0.07		# wait at least this long between processing inputs
-const MIN_DROP_MODE_TIME = 0.004
+const MIN_DROP_MODE_TIME = 0.004   # wait this long between move-down when in drop_mode
+# mganetism pulls the pieces down quickly after swipes have erased pieces below them
 const MAGNETISM_TIME = 0.004
 
 var current_level	= null	# will hold level definition
@@ -26,21 +28,23 @@ var swipe_mode= false			# if true, then we are swiping
 var swipe_array = []			# the pieces in the swipe
 
 func _ready():
-	buttons = Buttons.new()
+	buttons = Buttons.new()			# TODO: add level restart button after lose level
 	Helpers.game_scene = self		# so Players know where to appear
 	print("Started Game Scene")
-	start_level(0)
+	start_level(0)					# TODO: add level selection screen.  level 0 is my debug 
 	new_player()
+	# tell the Magnetism timer to call Helpers.magnetism_called (every MAGNETISM_TIME seconds)
 	get_node("Magnetism").connect("timeout", get_node("/root/Helpers"), "magnetism_called", [])
 
 
 func start_level(level_num):
-	var level_difficulty = "normal"
-	var level_group = "welcome"
+	var level_difficulty = "normal"		# TODO add Settings (same as Helpers.gd) and put "normal" and "welcome" into it
+	var level_group = "welcome"			#      Scene > Project Settings > Autoload
 	var level_name = level_format % [level_difficulty, level_group, level_num]
 	print("starting Level ", level_name)
 
 	current_level = load(level_name).new()		# load() gets a GDScript and new() instantiates it
+	# now that we have loaded the level, we can tell the game how it wants us to run
 	Helpers.slots_across = current_level.level_width()
 	Helpers.slots_down = current_level.level_height()
 	GRAVITY_TIMEOUT = current_level.gravity_timeout
@@ -50,18 +54,24 @@ func start_level(level_num):
 	# in which case the slots_across will be too small to clear everything
 	Helpers.clear_game_board()
 
-	# magnetism makes the nailed pieces fall (all pieces in board[])
+	# magnetism makes the nailed pieces fall (all pieces in board{})
 	start_magnetism()
 	
+	# TODO consider allowing the level definition to specify exactly
+	# what pieces to place on the board when starting
 	if current_level.fill_level:
 		fill_game_board()
 
+	# buttons are kinda like a HUD but for input, not output
 	buttons.set_game_scene(self)
+
+	# the steering pad is the left/right buttons at bottom
 	buttons.add_steering_pad()
 
 func fill_game_board():
 	print("filling level")
 
+	# top corner is 0,0
 	for across in range(Helpers.slots_across):
 		for down in range(Helpers.slots_down/2, Helpers.slots_down):
 			player_position = Vector2(across, down)
@@ -70,6 +80,8 @@ func fill_game_board():
 			var new_tile_type_ordinal = ItemDatabase.random_type()
 	
 			Helpers.instantiatePlayer(new_tile_type_ordinal, player_position)
+
+			# lock player into position on Helpers.board{}
 			nail_player()
 
 func new_player():

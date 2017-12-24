@@ -11,9 +11,11 @@ func set_tile_type(my_tile_type):
 	set_region(true)
 	set_region_rect(Rect2(ICON_SIZE * (icon % RAW_LENGTH), ICON_SIZE * (icon / RAW_LENGTH), ICON_SIZE, ICON_SIZE))
 
+# TODO create images/items_hightlight.png and swap out the image with set_texture
 func highlight():
 	set_modulate(Color(.1,.1,.1, 1))
 
+# TODO after create images/items_hightlight.png, unswap the image with set_texture
 func unhighlight():
 	set_modulate(Color(1,1,1,1))
 
