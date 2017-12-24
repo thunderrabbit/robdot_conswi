@@ -38,7 +38,7 @@ func _on_Area2D_input_event( viewport, event, shape_idx ):
 			emit_signal("clicked", Helpers.pixels_to_slot(get_pos()), tile_type)
 		else: # not event.pressed:
 			print("mouse unclicked ", Helpers.pixels_to_slot(get_pos()))
-			emit_signal("unclicked", Helpers.pixels_to_slot(get_pos()), tile_type)
+			emit_signal("unclicked")
 
 func _on_Area2D_mouse_enter():
 	if not is_swipable:

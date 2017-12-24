@@ -120,7 +120,7 @@ func _on_Orphan_Swipe_Catcher_input_event( viewport, event, shape_idx ):
 			print("mouse clicked ", Helpers.pixels_to_slot(get_pos()))
 		else: # not event.pressed:
 			print("mouse unclicked")
-			piece_unclicked("need not","send thises")
+			piece_unclicked()
 
 func _process(delta):
 
@@ -223,7 +223,7 @@ func piece_clicked(position, piece_type):
 	Helpers.board[position].highlight()
 	print("piece clicked", position, piece_type)
 
-func piece_unclicked(position, piece_type):
+func piece_unclicked():
 	if swipe_array.size() < current_level.min_swipe_len:
 		for pos in swipe_array:
 			Helpers.board[pos].unhighlight()
@@ -233,7 +233,7 @@ func piece_unclicked(position, piece_type):
 				Helpers.board[pos].remove_yourself()
 	swipe_array.clear()
 	swipe_mode = false
-	print("piece unclicked", position, piece_type)
+	print("piece unclicked")
 
 func piece_entered(position, piece_type):
 	if not swipe_mode:
