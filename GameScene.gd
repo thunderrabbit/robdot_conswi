@@ -91,7 +91,7 @@ func new_player():
 	player_position = Vector2(Helpers.slots_across/2, 0)
 	# check game over
 	if Helpers.board[Vector2(player_position.x, player_position.y)] != null:
-		game_over()
+		level_over()
 		return
 
 	Helpers.instantiatePlayer(player_position)
@@ -99,7 +99,7 @@ func new_player():
 	start_gravity_timer()
 
 
-func game_over():
+func level_over():
 	# gray out block sprites if existing
 	stop_magnetism()
 	var existing_sprites = get_node(".").get_children()
