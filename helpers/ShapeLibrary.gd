@@ -41,6 +41,7 @@ func createBitmap(swipeDimensions,swipeCoordinates):
 		bitmapArray.append(0)
 
 	for coord in swipeCoordinates:
+		# translate coordinates to upper left is (0,0)
 		tc = coord - upperleft
 		bitmapArray[tc.x + tc.y * width] = 1
 	return bitmapArray
