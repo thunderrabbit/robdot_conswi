@@ -38,5 +38,11 @@ func createBitmap(swipeDimensions,swipeCoordinates):
 	for i in range(width * height):
 		bitmapArray.append(0)
 
+	# hardcode until refactor above
+	var upperleft = Vector2(3,14)
+	var tc = Vector2(0,0)	# translated_coordinates
+	for coord in swipeCoordinates:
+		tc = coord - upperleft
+		bitmapArray[tc.x + tc.y * width] = 1
 	print(bitmapArray)
 
