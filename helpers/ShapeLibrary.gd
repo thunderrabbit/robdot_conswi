@@ -2,12 +2,27 @@ extends Node
 
 func _ready():
 	givenSwipe_showArray([Vector2(3,14),Vector2(3,15),Vector2(4,15)])
-	
+	givenSwipe_showArray([
+Vector2(10,14),
+Vector2(12,14),
+Vector2(8,15),
+Vector2(9,15),
+Vector2(10,15),
+Vector2(12,15),
+Vector2(8,16),
+Vector2(9,16),
+Vector2(12,16),
+Vector2(9,17),
+Vector2(10,17),
+Vector2(11,17),
+Vector2(12,17)
+])
+
 func givenSwipe_showArray(swipeCoordinates):
 	var swipeDimensions = getSwipeDimensions(swipeCoordinates)
 	print(swipeDimensions)
-	createBitmap(swipeDimensions,swipeCoordinates)
-
+	var bitmapArray = createBitmap(swipeDimensions,swipeCoordinates)
+	printBitmap(swipeDimensions, bitmapArray)
 # given coordinates of a swipe, return its width, height, top left, bottom right
 func getSwipeDimensions(swipeCoordinates):
 	# start somewhere and call it extreme
@@ -46,4 +61,10 @@ func createBitmap(swipeDimensions,swipeCoordinates):
 	for coord in swipeCoordinates:
 		tc = coord - upperleft
 		bitmapArray[tc.x + tc.y * width] = 1
+	return bitmapArray
+
+func printBitmap(swipeDimensions,bitmapArray):
 	print(bitmapArray)
+	print("[%d," % swipeDimensions.width)
+	print(bitmapArray)
+
