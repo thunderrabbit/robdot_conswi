@@ -36,7 +36,6 @@ func _ready():
 	# tell the Magnetism timer to call Helpers.magnetism_called (every MAGNETISM_TIME seconds)
 	get_node("Magnetism").connect("timeout", get_node("/root/Helpers"), "magnetism_called", [])
 
-
 func start_level(level_num):
 	var level_difficulty = "normal"		# TODO add Settings (same as Helpers.gd) and put "normal" and "welcome" into it
 	var level_group = "welcome"			#      Scene > Project Settings > Autoload
@@ -75,7 +74,6 @@ func fill_game_board():
 	for across in range(Helpers.slots_across):
 		for down in range(Helpers.slots_down/2, Helpers.slots_down):
 			player_position = Vector2(across, down)
-	
 
 			Helpers.instantiatePlayer(player_position)
 
@@ -98,7 +96,6 @@ func new_player():
 	player.set_show_shadow(true)
 	set_process(true)		# allows players to be moved
 	start_gravity_timer()
-
 
 func level_over():
 	# gray out block sprites if existing
