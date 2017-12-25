@@ -14,7 +14,6 @@ func getSwipeDimensions(swipeCoordinates):
 	var upmost_y = swipeCoordinates[0].y
 	var downmost_y = swipeCoordinates[0].y
 
-
 	for coord in swipeCoordinates:
 		leftmost_x = min(leftmost_x,coord.x)
 		rightmost_x = max(rightmost_x,coord.x)
