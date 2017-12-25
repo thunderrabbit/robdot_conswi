@@ -6,6 +6,7 @@ func _ready():
 func givenSwipe_showArray(swipeCoordinates):
 	var swipeDimensions = getSwipeDimensions(swipeCoordinates)
 	print(swipeDimensions)
+	createBitmap(swipeDimensions,swipeCoordinates)
 
 # given coordinates of a swipe, return a Vector2
 # of their width and height
@@ -27,4 +28,15 @@ func getSwipeDimensions(swipeCoordinates):
 	var width = (rightmost_x - leftmost_x) + 1
 	var height = (downmost_y - upmost_y) + 1
 	return Vector2(width,height)
+
+func createBitmap(swipeDimensions,swipeCoordinates):
+	var bitmapArray = []
+	var width = swipeDimensions.x
+	var height = swipeDimensions.y
+
+	# fill array with zeroes
+	for i in range(width * height):
+		bitmapArray.append(0)
+
+	print(bitmapArray)
 
