@@ -228,6 +228,7 @@ func piece_unclicked():
 		for pos in swipe_array:
 			Helpers.board[pos].unhighlight()
 	else:
+		ShapeLibrary.givenSwipe_showArray(swipe_array)
 		for pos in swipe_array:
 			if Helpers.board[pos] != null:
 				Helpers.board[pos].remove_yourself()
