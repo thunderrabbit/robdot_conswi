@@ -47,7 +47,6 @@ func createBitmap(swipeDimensions,swipeCoordinates):
 	return bitmapArray
 
 func printBitmap(swipeDimensions,bitmapArray):
-	print(bitmapArray)
-	print("[%d," % swipeDimensions.width)
+	bitmapArray.push_front(swipeDimensions.width)
 	print(bitmapArray)
 
