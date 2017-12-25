@@ -117,9 +117,8 @@ func _on_Orphan_Swipe_Catcher_input_event( viewport, event, shape_idx ):
 	if event.type == InputEvent.MOUSE_BUTTON \
 	and event.button_index == BUTTON_LEFT:
 		if event.pressed:
-			print("mouse clicked ", Helpers.pixels_to_slot(get_pos()))
+			pass
 		else: # not event.pressed:
-			print("mouse unclicked")
 			piece_unclicked()
 
 func _process(delta):
@@ -146,7 +145,6 @@ func _process(delta):
 		move_player(0, input_y_direction)
 	else:
 		if input_y_direction > 0:
-			print("nailed")
 			nail_player()
 			new_player()
 
@@ -156,7 +154,6 @@ func _process(delta):
 		gravity_called = false
 
 func check_movable(x, y):
-#	print("can we move (",x,",",y,")?")
 	# x is side to side motion.  -1 = left   1 = right
 	if x == -1 or x == 1:
 		# check border
@@ -221,7 +218,6 @@ func piece_clicked(position, piece_type):
 	swipe_mode = true
 	swipe_array.append(position)
 	Helpers.board[position].highlight()
-	print("piece clicked", position, piece_type)
 
 func piece_unclicked():
 	if swipe_array.size() < current_level.min_swipe_len:
@@ -234,29 +230,23 @@ func piece_unclicked():
 				Helpers.board[pos].remove_yourself()
 	swipe_array.clear()
 	swipe_mode = false
-	print("piece unclicked")
 
 func piece_entered(position, piece_type):
 	if not swipe_mode:
-		print("not swipe mode")
 		return
 	if swipe_color != piece_type:
-		print(piece_type, " is not color ", swipe_color)
 		return
 	# ensure the position is adjacent to the last item in the array
 	if not adjacent(swipe_array.back(), position):
-		print("not adjacent")
 		return
 	if position == swipe_array[swipe_array.size()-2]:
 		# we back tracked
 		var old_last = swipe_array.back()
 		swipe_array.pop_back()
 		Helpers.board[old_last].unhighlight()
-		print("piece backtracked", old_last)
 	else:
 		swipe_array.append(position)
 		Helpers.board[position].highlight()
-		print("piece entered", position, piece_type)
 
 func adjacent(pos1, pos2):
 	# https://www.gamedev.net/forums/topic/516685-best-algorithm-to-find-adjacent-tiles/?tab=comments#comment-4359055
@@ -273,4 +263,4 @@ func adjacent(pos1, pos2):
 	return false
 
 func piece_exited(position, piece_type):
-	print("piece exited", position, piece_type)
+	pass
