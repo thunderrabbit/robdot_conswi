@@ -9,8 +9,9 @@ var queue_upcoming = []			# queue of upcoming pieces
 var queue_length = 0			# number of pieces to show in the queue
 
 # width and height of level board
-var slots_across
-var slots_down
+var slots_across = 0
+var slots_down = 0
+var debug_level = 0
 
 func _ready():
 	board = {}
@@ -36,7 +37,10 @@ func magnetism_called():
 func queue_wo_fill():
 	while queue_upcoming.size() < queue_length:
 		# new player will be a random of four colors
-		var new_tile_type_ordinal = ItemDatabase.random_type()		
+		var new_tile_type_ordinal = ItemDatabase.random_type()	
+		if self.debug_level == 1:
+			new_tile_type_ordinal = 0
+
 		var new_player = Player.new()
 		# Allow player to add itself to the scene
 		new_player.set_game_scene(game_scene)
