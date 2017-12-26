@@ -14,11 +14,19 @@ func _ready():
 			print("Make sure there are no repeated arrays in ShapeDatabase")
 		bitmapNames[arr_as_str] = shapeName		# e.g. [1,1,1,1] = 'ta3'
 
-func givenSwipe_showArray(swipeCoordinates):
+# private function which gets a string representing a swipe
+# I am going on the unproven assumption that any different swipe shape
+# (rotations are different shapes) will produce unique strings
+func _getBitmapStringOfSwipeCoordinates(swipeCoordinates):
 	var swipeDimensions = getSwipeDimensions(swipeCoordinates)
-	print(swipeDimensions)
 	var bitmapArray = createBitmap(swipeDimensions,swipeCoordinates)
-	printBitmap(swipeDimensions, bitmapArray)
+	return prepareBitmap(swipeDimensions,bitmapArray)
+
+# This is basically used to create the Library.
+# We do a swipe (in debug mode) and this will print an array representing the swipe
+func givenSwipe_showArray(swipeCoordinates):
+	var bitmapString = _getBitmapStringOfSwipeCoordinates(swipeCoordinates)
+	printBitmap(bitmapString)
 
 # given coordinates of a swipe, return its width, height, top left, bottom right
 func getSwipeDimensions(swipeCoordinates):
