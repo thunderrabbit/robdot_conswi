@@ -49,4 +49,7 @@ func createBitmap(swipeDimensions,swipeCoordinates):
 func printBitmap(swipeDimensions,bitmapArray):
 	bitmapArray.push_front(swipeDimensions.width)
 	print(bitmapArray)
+	if Helpers.debug_level > 0:
+		var debout = get_node("/root/GameScene/DebugOutput")
+		debout.set_text(String(bitmapArray))
 

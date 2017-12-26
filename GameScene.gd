@@ -68,6 +68,9 @@ func start_level(level_num):
 	# the steering pad is the left/right buttons at bottom
 	buttons.add_steering_pad()
 
+	if Helpers.debug_level == 0:
+		get_node("/root/GameScene/DebugOutput").queue_free()
+
 func fill_game_board():
 	print("filling level")
 
