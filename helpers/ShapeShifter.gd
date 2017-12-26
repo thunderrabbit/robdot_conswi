@@ -28,6 +28,18 @@ func givenSwipe_showArray(swipeCoordinates):
 	var bitmapString = _getBitmapStringOfSwipeCoordinates(swipeCoordinates)
 	printBitmap(bitmapString)
 
+# This will look for the name of the swipe shape given a swipe
+# It will be used by GameScene to ensure the user has done the required swipes to pass a given level
+func givenSwipe_lookupName(swipeCoordinates):
+	var bitmapString = _getBitmapStringOfSwipeCoordinates(swipeCoordinates)
+	var nameOfSwipe = null
+	if bitmapNames.has(bitmapString):
+		nameOfSwipe = bitmapNames[bitmapString]
+		print(nameOfSwipe)
+	else:
+		print("shape not in library")
+	return nameOfSwipe
+
 # given coordinates of a swipe, return its width, height, top left, bottom right
 func getSwipeDimensions(swipeCoordinates):
 	# start somewhere and call it extreme
