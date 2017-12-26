@@ -37,7 +37,7 @@ func magnetism_called():
 func queue_wo_fill():
 	while queue_upcoming.size() < queue_length:
 		# new player will be a random of four colors
-		var new_tile_type_ordinal = ItemDatabase.random_type()	
+		var new_tile_type_ordinal = TileDatabase.random_type()	
 		if self.debug_level == 1:
 			new_tile_type_ordinal = 0
 
