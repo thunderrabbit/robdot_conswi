@@ -1,6 +1,6 @@
 extends Node
 
-var Tile = preload("res://SubScenes/Tile.tscn")
+const Tile = preload("res://SubScenes/Tile.tscn")
 
 var tile_y_shadow = []	# Will hold the player and shadow while in motion
 var parent_scene
