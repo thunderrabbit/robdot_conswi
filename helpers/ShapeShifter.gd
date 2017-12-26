@@ -46,10 +46,15 @@ func createBitmap(swipeDimensions,swipeCoordinates):
 		bitmapArray[tc.x + tc.y * width] = 1
 	return bitmapArray
 
-func printBitmap(swipeDimensions,bitmapArray):
+func prepareBitmap(swipeDimensions,bitmapArray):
+	# arrays are sent by reference, so this actually changes bitmapArray
 	bitmapArray.push_front(swipeDimensions.width)
-	print(bitmapArray)
+	# we need a String because arrays cannot be reliably used as Dictionary keys
+	return String(bitmapArray)
+
+func printBitmap(theBitmap):
+	print(theBitmap)
 	if Helpers.debug_level > 0:
 		var debout = get_node("/root/GameScene/DebugOutput")
-		debout.set_text(String(bitmapArray))
+		debout.set_text(String(theBitmap))
 
