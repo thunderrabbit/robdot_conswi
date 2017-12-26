@@ -1,4 +1,4 @@
-## ConSwi, a swipe game.
+## ConSwi, a swipe game in Godot
 
 
 ### Getting started:
