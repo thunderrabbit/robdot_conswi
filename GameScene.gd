@@ -225,7 +225,8 @@ func piece_unclicked():
 		for pos in swipe_array:
 			Helpers.board[pos].unhighlight()
 	else:
-		ShapeShifter.givenSwipe_showArray(swipe_array)
+		if Helpers.debug_level > 0:
+			ShapeShifter.givenSwipe_showArray(swipe_array)
 		ShapeShifter.givenSwipe_lookupName(swipe_array)
 		for pos in swipe_array:
 			if Helpers.board[pos] != null:
