@@ -110,7 +110,7 @@ func level_over():
 		if "is_a_game_piece" in sprite:
 			## I have no idea why .get_node("TileSprite") is null sometimes
 			## It seems to be related to queue_freeing the shadow sprite
-			if sprite.get_node("TileSprite") != null:
+			if sprite.has_node("TileSprite"):
 				sprite.get_node("TileSprite").set_modulate(Color(0.1,0.1,0.1, 1))
 
 # this is only to handle orphaned swipes
