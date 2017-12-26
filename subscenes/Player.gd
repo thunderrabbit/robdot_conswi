@@ -6,6 +6,7 @@ var tile_y_shadow = []	# Will hold the player and shadow while in motion
 var parent_scene
 var my_position
 var should_show_shadow = false
+var nailed = false
 
 func _ready():
 	# array to hold both parts of our player
@@ -34,19 +35,21 @@ func set_game_scene(game_scene):
 func set_position(player_position):
 	my_position = player_position
 	tile_y_shadow[0].set_pos(Helpers.slot_to_pixels(player_position))
-	tile_y_shadow[1].set_pos(Helpers.slot_to_pixels(Vector2(player_position.x, column_height(player_position.x))))   ## shadow
-	var shadow = tile_y_shadow[1].get_node("TileSprite")
-	if shadow != null:
-		if should_show_shadow:
-			shadow.set_modulate(Color(1,1,1, 0.3))
-		else:
-			shadow.set_modulate(Color(0,0,0,0))
+	if not nailed:
+		tile_y_shadow[1].set_pos(Helpers.slot_to_pixels(Vector2(player_position.x, column_height(player_position.x))))   ## shadow
+		var shadow = tile_y_shadow[1].get_node("TileSprite")
+		if shadow != null:
+			if should_show_shadow:
+				shadow.set_modulate(Color(1,1,1, 0.3))
+			else:
+				shadow.set_modulate(Color(0,0,0,0))
 
 # player has been nailed so it should animate or whatever
 func nail_player():
 	# remove player's shadow
 	tile_y_shadow[0].become_swipable()
 	tile_y_shadow[1].get_node("TileSprite").queue_free()
+	nailed = true
 	pass
 	
 func column_height(column):
