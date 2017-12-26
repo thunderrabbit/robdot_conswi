@@ -1,5 +1,19 @@
 extends Node
 
+var bitmapNames = {}		# will be filled in automatically based on ShapeDatabase.ShapeDatabase
+
+func _ready():
+	# fill in bitmapNames so we can look up the name of a swipe given its coordinates
+	for shapeName in ShapeDatabase.ShapeDatabase:
+		# get the Shape Array as a string to use as a dictionary key in bitmapNames
+		var arr_as_str = String(ShapeDatabase.ShapeDatabase[shapeName])
+		# if it exists, then presumably there is an error in the ShapeDatabase
+		# (or an error in belief that different swipes produce different arrays)
+		if bitmapNames.has(arr_as_str):
+			print("Alert! this array ", arr_as_str, " already found in bitmapNames.")
+			print("Make sure there are no repeated arrays in ShapeDatabase")
+		bitmapNames[arr_as_str] = shapeName		# e.g. [1,1,1,1] = 'ta3'
+
 func givenSwipe_showArray(swipeCoordinates):
 	var swipeDimensions = getSwipeDimensions(swipeCoordinates)
 	print(swipeDimensions)
