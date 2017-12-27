@@ -63,6 +63,12 @@ func queue_next():
 	queue_upcoming.pop_front()
 	return next_piece
 
+func grok_level(level_info):
+	slots_across = level_info.width
+	slots_down = level_info.height
+	queue_length = level_info.queue_len + 1 # +1 accounts for current player)
+	debug_level = level_info.debug_level
+
 func instantiatePlayer(player_position):
 
 	game_scene.player = queue_next()
