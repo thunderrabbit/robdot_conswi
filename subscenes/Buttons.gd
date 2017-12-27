@@ -15,5 +15,5 @@ func add_steering_pad():
 
 func display_level_end_buttons():
 	var endLevelButtons = EndLevelBut.instance()
-	endLevelButtons.set_pos(Vector2(0,0))
+	endLevelButtons.set_alignment(endLevelButtons.ALIGN_CENTER)
 	parent_scene.add_child(endLevelButtons)
