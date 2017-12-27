@@ -37,7 +37,9 @@ func magnetism_called():
 			sprite.move_down_if_room()
 
 func queue_wo_fill():
-	while queue_upcoming.size() < queue_length:
+	while queue_upcoming.size() < queue_length and \
+			max_tiles_avail > 0:
+		max_tiles_avail = max_tiles_avail - 1
 		# new player will be a random of four colors
 		var new_tile_type_ordinal = TileDatabase.random_type()	
 		if self.debug_level == 1:
