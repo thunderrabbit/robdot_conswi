@@ -28,6 +28,7 @@ toggle_mode = true
 click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
+text = "Replay Level"
 icon = ExtResource( 1 )
 flat = false
 
