@@ -7,6 +7,8 @@ var board = {}			# board of slots_across x slots_down
 
 var queue_upcoming = []			# queue of upcoming pieces
 var queue_length = 0			# number of pieces to show in the queue
+var max_tiles_avail = 0			# number of tiles available,
+								# including queue and fill_board
 
 # width and height of level board
 var slots_across = 0
@@ -68,6 +70,8 @@ func grok_level(level_info):
 	slots_down = level_info.height
 	queue_length = level_info.queue_len + 1 # +1 accounts for current player)
 	debug_level = level_info.debug_level
+	max_tiles_avail = level_info.max_tiles_avail
+	print(max_tiles_avail, " tiles remain")
 
 func instantiatePlayer(player_position):
 
