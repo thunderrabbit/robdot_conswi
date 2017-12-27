@@ -61,7 +61,7 @@ func column_height(column):
 
 func move_down_if_room():
 	var below_me = my_position + Vector2(0,1)
-	if below_me.y < 10:
+	if below_me.y < Helpers.slots_down:
 		if Helpers.board[below_me] == null:
 			Helpers.board[below_me] = self
 			Helpers.board[my_position] = null
