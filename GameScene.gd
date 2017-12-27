@@ -44,8 +44,8 @@ func start_level(level_num):
 
 	current_level = load(level_name).new()		# load() gets a GDScript and new() instantiates it
 	# now that we have loaded the level, we can tell the game how it wants us to run
-	Helpers.slots_across = current_level.level_width()
-	Helpers.slots_down = current_level.level_height()
+	Helpers.slots_across = current_level.width
+	Helpers.slots_down = current_level.height
 	GRAVITY_TIMEOUT = current_level.gravity_timeout
 	Helpers.queue_length = current_level.queue_len + 1 # +1 accounts for current player)
 	Helpers.debug_level = current_level.debug_level

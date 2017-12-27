@@ -9,9 +9,3 @@ var debug_level = 0			# boolean for now
 
 var queue_len = 3			# queue is upcoming tiles
 
-# really no reason for these???
-func level_width():
-	return width
-
-func level_height():
-	return height
