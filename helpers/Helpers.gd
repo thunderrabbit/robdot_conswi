@@ -9,6 +9,7 @@ var queue_upcoming = []			# queue of upcoming pieces
 var queue_length = 0			# number of pieces to show in the queue
 var max_tiles_avail = 0			# number of tiles available,
 								# including queue and fill_board
+var upcoming_tiles = []
 
 # width and height of level board
 var slots_across = 0
@@ -42,6 +43,12 @@ func queue_wo_fill():
 		max_tiles_avail = max_tiles_avail - 1
 		# new player will be a random of four colors
 		var new_tile_type_ordinal = TileDatabase.random_type()	
+
+		if upcoming_tiles.size() > 1:
+			new_tile_type_ordinal = upcoming_tiles.front()
+			upcoming_tiles.pop_front()
+
+		# debug overwrites everything and just give same tile
 		if self.debug_level == 1:
 			new_tile_type_ordinal = 0
 
@@ -74,6 +81,7 @@ func grok_level(level_info):
 	debug_level = level_info.debug_level
 	max_tiles_avail = level_info.max_tiles_avail
 	print(max_tiles_avail, " tiles remain")
+	upcoming_tiles = level_info.tiles
 
 func instantiatePlayer(player_position):
 	# queue_next returns null if max_tiles_available has been exceeded
