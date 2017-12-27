@@ -33,6 +33,9 @@ func _ready():
 	print("Started Game Scene")
 	requested_play_level(0)
 
+func requested_replay_level():
+	requested_play_level(0)
+
 func requested_play_level(level):
 	start_level(level)					# TODO: add level selection screen.  level 0 is my debug 
 	new_player()
