@@ -71,7 +71,7 @@ func start_level(level_num):
 	buttons.prepare_to_play_level(level_num)
 
 	if Helpers.debug_level == 0:
-		get_node("/root/GameScene/DebugOutput").queue_free()
+		get_node("/root/GameScene/DebugOutput").hide()
 
 func fill_game_board():
 	print("filling level")
