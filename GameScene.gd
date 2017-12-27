@@ -111,7 +111,7 @@ func level_over():
 	stop_magnetism()
 	var existing_sprites = get_node(".").get_children()
 	for sprite in existing_sprites:
-		# do not remove slots from board
+		# only remove tiles from board
 		if "is_a_game_piece" in sprite:
 			## I have no idea why .get_node("TileSprite") is null sometimes
 			## It seems to be related to queue_freeing the shadow sprite
