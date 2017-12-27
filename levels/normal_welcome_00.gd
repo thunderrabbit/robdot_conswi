@@ -2,6 +2,7 @@ extends "NormalLevel.gd"
 
 func _init():
 	width = 25
+	height = 4
 	fill_level = false
 	gravity_timeout = 10
 	debug_level = 0
