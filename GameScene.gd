@@ -60,8 +60,7 @@ func start_level(level_num):
 	# magnetism makes the nailed pieces fall (all pieces in board{})
 	start_magnetism()
 
-	# TODO consider allowing the level definition to specify exactly
-	# what pieces to place on the board when starting
+	# Fill the level halfway, if max_tiles_avail allows it
 	if current_level.fill_level:
 		fill_game_board()
 
