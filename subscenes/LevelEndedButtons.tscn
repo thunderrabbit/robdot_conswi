@@ -12,10 +12,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
-flat = false
-button/count = 0
-button/min_button_size = -1.0
-button/align = 3538944
+alignment = 0
 
 [node name="Button" type="Button" parent="."]
 
@@ -25,9 +22,10 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 71.0
+margin/right = 153.0
 margin/bottom = 36.0
-toggle_mode = false
+toggle_mode = true
+click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
 icon = ExtResource( 1 )
