@@ -57,7 +57,7 @@ func queue_wo_fill():
 	var x = slots_across-queue_length
 	for tile in queue_upcoming:
 		tile.set_position(Vector2(x,0))
-		x = x+1		# TODO turn off shadows
+		x = x+1
 
 
 func queue_next():
