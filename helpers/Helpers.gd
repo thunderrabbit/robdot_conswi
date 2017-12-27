@@ -59,8 +59,7 @@ func queue_wo_fill():
 
 
 func queue_next():
-	if queue_upcoming.size() < queue_length:
-		queue_wo_fill()
+	queue_wo_fill()
 	var next_piece = queue_upcoming.front()
 	queue_upcoming.pop_front()
 	return next_piece
