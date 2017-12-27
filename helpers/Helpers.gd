@@ -22,9 +22,11 @@ func _ready():
 # clear the visual board; prepare the Dictionary board{}
 func clear_game_board():
 	# clear block sprites if existing
-	var existing_sprites = get_node(".").get_children()
+	var existing_sprites = get_node("/root/GameScene/").get_children()
 	for sprite in existing_sprites:
-		sprite.queue_free()
+		# only remove tiles from board
+		if "is_a_game_piece" in sprite:
+			sprite.queue_free()
 
 	board = {}
 	for i in range(slots_across):
