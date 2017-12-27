@@ -112,6 +112,7 @@ func level_over():
 			## It seems to be related to queue_freeing the shadow sprite
 			if sprite.has_node("TileSprite"):
 				sprite.get_node("TileSprite").set_modulate(Color(0.1,0.1,0.1, 1))
+	buttons.display_level_end_buttons()
 
 # this is only to handle orphaned swipes
 func _on_Orphan_Swipe_Catcher_input_event( viewport, event, shape_idx ):
