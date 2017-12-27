@@ -228,5 +228,6 @@ var ShapeDatabase = {
 				1, 1, 1, 1,
 				1, 1, 1, 1,
 				1, 1, 1, 1,
-				1, 1, 1, 1]
+				1, 1, 1, 1],
+	"last item has no trailing comma":[]
 }
