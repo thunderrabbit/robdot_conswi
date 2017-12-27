@@ -76,10 +76,11 @@ func fill_game_board():
 		for down in range(Helpers.slots_down/2, Helpers.slots_down):
 			player_position = Vector2(across, down)
 
-			Helpers.instantiatePlayer(player_position)
-
-			# lock player into position on Helpers.board{}
-			nail_player()
+			if Helpers.instantiatePlayer(player_position):
+				# lock player into position on Helpers.board{}
+				nail_player()
+			else:
+				print("no more tiles available!")
 
 func new_player():
 	# turn off drop mode
@@ -93,10 +94,12 @@ func new_player():
 		level_over()
 		return
 
-	Helpers.instantiatePlayer(player_position)
-	player.set_show_shadow(true)
-	set_process(true)		# allows players to be moved
-	start_gravity_timer()
+	if Helpers.instantiatePlayer(player_position):
+		player.set_show_shadow(true)
+		set_process(true)		# allows players to be moved
+		start_gravity_timer()
+	else:
+		print("no more tiles available!")
 
 func level_over():
 	# gray out block sprites if existing
