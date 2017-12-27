@@ -31,7 +31,10 @@ func _ready():
 	buttons = Buttons.new()			# TODO: add level restart button after lose level
 	Helpers.game_scene = self		# so Players know where to appear
 	print("Started Game Scene")
-	start_level(0)					# TODO: add level selection screen.  level 0 is my debug 
+	requested_play_level(0)
+
+func requested_play_level(level):
+	start_level(level)					# TODO: add level selection screen.  level 0 is my debug 
 	new_player()
 	# tell the Magnetism timer to call Helpers.magnetism_called (every MAGNETISM_TIME seconds)
 	get_node("Magnetism").connect("timeout", get_node("/root/Helpers"), "magnetism_called", [])
