@@ -61,7 +61,8 @@ func queue_wo_fill():
 func queue_next():
 	queue_wo_fill()
 	var next_piece = queue_upcoming.front()
-	queue_upcoming.pop_front()
+	if next_piece != null:
+		queue_upcoming.pop_front()
 	return next_piece
 
 func grok_level(level_info):
@@ -73,11 +74,14 @@ func grok_level(level_info):
 	print(max_tiles_avail, " tiles remain")
 
 func instantiatePlayer(player_position):
-
+	# queue_next returns null if max_tiles_available has been exceeded
 	game_scene.player = queue_next()
-
-	# Move the player
-	game_scene.player.set_position(player_position)
+	if game_scene.player != null:
+		# Move the player
+		game_scene.player.set_position(player_position)
+		return true		# we had tiles available
+	else:
+		return false	# no more tiles available
 
 func pixels_to_slot(pixels):
 	return Vector2((pixels.x - G.GLOBALleft_space) / (G.SLOT_SIZE + G.GLOBALslot_gap_h),
