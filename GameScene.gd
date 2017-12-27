@@ -65,8 +65,7 @@ func start_level(level_num):
 	# buttons are kinda like a HUD but for input, not output
 	buttons.set_game_scene(self)
 
-	# the steering pad is the left/right buttons at bottom
-	buttons.add_steering_pad()
+	buttons.prepare_to_play_level(level_num)
 
 	if Helpers.debug_level == 0:
 		get_node("/root/GameScene/DebugOutput").queue_free()
@@ -115,7 +114,7 @@ func level_over():
 			## It seems to be related to queue_freeing the shadow sprite
 			if sprite.has_node("TileSprite"):
 				sprite.get_node("TileSprite").set_modulate(Color(0.1,0.1,0.1, 1))
-	buttons.display_level_end_buttons()
+	buttons.level_ended()
 
 # this is only to handle orphaned swipes
 func _on_Orphan_Swipe_Catcher_input_event( viewport, event, shape_idx ):
