@@ -9,4 +9,4 @@ var max_tiles_avail = 32768	# including tiles used in fill_level = true
 var debug_level = 0			# boolean for now
 
 var queue_len = 3			# queue is upcoming tiles
-
+var tiles = []				# fill this to define tiles
