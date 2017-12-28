@@ -6,28 +6,27 @@ var parent_scene
 var endLevelButtons = null
 var steering_pad = null
 
+func _init():
+	steering_pad = SteeringPad.instance()
+	steering_pad.set_pos(Helpers.steering_pad_pixels())
+	add_child(steering_pad)
+
+	endLevelButtons = EndLevelBut.instance()
+	endLevelButtons.set_alignment(endLevelButtons.ALIGN_CENTER)
+	add_child(endLevelButtons)
+
 func set_game_scene(game_scene):
 	parent_scene = game_scene
+	steering_pad.set_game_scene(parent_scene)
+	endLevelButtons.set_game_scene(parent_scene)
 
 func prepare_to_play_level(level):
 	print("buttons preparing for level ", level)
 	# the steering pad is the left/right buttons at bottom
-	self.add_steering_pad()
-	if self.endLevelButtons != null:
-		self.endLevelButtons.queue_free()
-
-func add_steering_pad():
-	steering_pad = SteeringPad.instance()
-	steering_pad.set_pos(Helpers.steering_pad_pixels())
-	steering_pad.set_game_scene(parent_scene)
-	parent_scene.add_child(steering_pad)
+	steering_pad.show()
+	endLevelButtons.hide()
 
 func level_ended():
-	steering_pad.queue_free()
-	_display_level_end_buttons()
+	steering_pad.hide()
+	endLevelButtons.show()
 
-func _display_level_end_buttons():
-	endLevelButtons = EndLevelBut.instance()
-	endLevelButtons.set_alignment(endLevelButtons.ALIGN_CENTER)
-	endLevelButtons.set_game_scene(parent_scene)
-	parent_scene.add_child(endLevelButtons)

@@ -69,6 +69,7 @@ func start_level(level_num):
 
 	# buttons are kinda like a HUD but for input, not output
 	buttons.set_game_scene(self)
+	add_child(buttons)
 
 	buttons.prepare_to_play_level(level_num)
 
