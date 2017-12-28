@@ -53,10 +53,10 @@ func queue_wo_fill():
 			new_tile_type_ordinal = 0
 
 		var new_player = Player.new()
-		# Allow player to add itself to the scene
-		new_player.set_game_scene(game_scene)
+
 		# Tell player what type it is
 		new_player.set_type(new_tile_type_ordinal)
+		add_child(new_player)
 
 		queue_upcoming.append(new_player)
 

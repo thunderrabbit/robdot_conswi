@@ -4,7 +4,6 @@ const Tile = preload("res://SubScenes/Tile.tscn")
 
 var mytile = null	# visible in queue, while moving, when nailed
 var myshadow = null	# only visible when moving
-var parent_scene
 var my_position
 var should_show_shadow = false
 var nailed = false
@@ -25,10 +24,6 @@ func set_type(new_tile_type_ordinal):
 	# remove collider from shadow so it ignores mouse
 	myshadow.get_node("CollisionShape2D").queue_free()
 	add_child(myshadow)
-
-func set_game_scene(game_scene):
-	parent_scene = game_scene
-	parent_scene.add_child(self)
 
 # update player sprite display
 func set_position(player_position):
