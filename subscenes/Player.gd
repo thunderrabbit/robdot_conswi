@@ -18,10 +18,10 @@ func set_type(new_tile_type_ordinal):
 	for i in range(2):
 		# insantiate new Tile to be our player
 		var tile = Tile.instance()
-		# randomly choose Tile type (dog, cat, pig, etc)
 		tile.set_tile_type(new_tile_type_ordinal)
 		# keep it in player_sprites so we can find them later
 		tile_y_shadow.append(tile)
+
 		# add Tile to scene
 		parent_scene.add_child(tile)
 
