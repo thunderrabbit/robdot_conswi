@@ -11,7 +11,7 @@ const MIN_DROP_MODE_TIME = 0.004   # wait this long between move-down when in dr
 const MAGNETISM_TIME = 0.004
 
 var current_level	= null	# will hold level definition
-
+var requested_level = 0		# Will be read from level menu
 var elapsed_time = 10		# pretend it has been 10 seconds so input can definitely be processed upon start
 
 var input_x_direction	# -1 = left; 0 = stay; 1 = right
@@ -31,10 +31,10 @@ func _ready():
 	buttons = Buttons.new()			# TODO: add level restart button after lose level
 	Helpers.game_scene = self		# so Players know where to appear
 	print("Started Game Scene")
-	requested_play_level(0)
+	requested_play_level(requested_level)
 
 func requested_replay_level():
-	requested_play_level(0)
+	requested_play_level(requested_level)
 
 func requested_play_level(level):
 	start_level(level)					# TODO: add level selection screen.  level 0 is my debug 
