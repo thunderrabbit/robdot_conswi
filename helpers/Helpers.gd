@@ -24,7 +24,7 @@ func clear_game_board():
 	# clear block sprites if existing
 	var existing_players = get_tree().get_nodes_in_group("players")
 	for player in existing_players:
-		player.queue_free()
+		remove_child(player)
 
 	board = {}
 	for i in range(slots_across):
