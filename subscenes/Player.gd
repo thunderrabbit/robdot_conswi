@@ -40,9 +40,10 @@ func set_position(player_position):
 		var shadow = tile_y_shadow[1].get_node("TileSprite")
 		if shadow != null:
 			if should_show_shadow:
+				shadow.show()
 				shadow.set_modulate(Color(1,1,1, 0.3))
 			else:
-				shadow.set_modulate(Color(0,0,0,0))
+				shadow.hide()
 
 # player has been nailed so it should animate or whatever
 func nail_player():
