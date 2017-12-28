@@ -31,6 +31,9 @@ func _ready():
 	buttons = Buttons.new()			# TODO: add level restart button after lose level
 	Helpers.game_scene = self		# so Players know where to appear
 	print("Started Game Scene")
+
+	# TODO: add START button overlay
+	# which will trigger this call:
 	requested_play_level(requested_level)
 
 func requested_replay_level():
