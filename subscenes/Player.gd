@@ -78,6 +78,13 @@ func highlight():
 func unhighlight():
 	mytile.my_sprite.unhighlight()
 
+func darken():
+	mytile.my_sprite.darken()
+	mytile.get_node("CollisionShape2D").queue_free()
+
+func level_ended():
+	darken()
+
 func remove_yourself():
 	Helpers.board[my_position] = null
 	queue_free()		# release yourself
