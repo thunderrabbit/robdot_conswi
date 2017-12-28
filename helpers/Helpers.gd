@@ -22,7 +22,7 @@ func _ready():
 # clear the visual board; prepare the Dictionary board{}
 func clear_game_board():
 	# clear block sprites if existing
-	var existing_players = get_tree().get_nodes_in_group("tiles")
+	var existing_players = get_tree().get_nodes_in_group("players")
 	for player in existing_players:
 		player.queue_free()
 

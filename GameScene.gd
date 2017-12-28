@@ -111,7 +111,7 @@ func new_player():
 func level_over():
 	# gray out block sprites if existing
 	stop_magnetism()
-	var existing_sprites = get_tree().get_nodes_in_group("tiles")
+	var existing_sprites = get_tree().get_nodes_in_group("players")
 	for sprite in existing_sprites:
 		sprite.level_ended()
 	buttons.level_ended()

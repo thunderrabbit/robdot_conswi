@@ -10,7 +10,7 @@ var should_show_shadow = false
 var nailed = false
 
 func _ready():
-	add_to_group("tiles")		# to simplify clearing game scene
+	add_to_group("players")		# to simplify clearing game scene
 	set_process_input(false)
 
 func set_type(new_tile_type_ordinal):
