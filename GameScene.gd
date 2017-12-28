@@ -63,6 +63,9 @@ func start_level(level_num):
 	# magnetism makes the nailed pieces fall (all pieces in board{})
 	start_magnetism()
 
+	# if level timer runs out the level is lost
+	start_level_timer()
+
 	# Fill the level halfway, if max_tiles_avail allows it
 	if current_level.fill_level:
 		fill_game_board()
@@ -191,6 +194,15 @@ func start_gravity_timer():
 
 func stop_gravity_timer():
 	var le_timer = get_node("GravityTimer")
+	le_timer.stop()
+
+func start_level_timer():
+	var le_timer = get_node("LevelTimer")
+	le_timer.set_wait_time(current_level.time_limit_in_sec)
+	le_timer.start()
+
+func stop_level_timer():
+	var le_timer = get_node("LevelTimer")
 	le_timer.stop()
 
 func start_magnetism():
