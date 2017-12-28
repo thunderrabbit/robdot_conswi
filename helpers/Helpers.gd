@@ -31,6 +31,9 @@ func clear_game_board():
 		for j in range(slots_down):
 			board[Vector2(i, j)] = null
 
+	# empty the queue else we have ghosts when level restarts
+	queue_upcoming = []
+
 func magnetism_called():
 	for pos in board:
 		var sprite = board[pos]
