@@ -77,6 +77,12 @@ func queue_next():
 		queue_upcoming.pop_front()
 	return next_piece
 
+# grok_level is not well designed in that it probably should *not* grok
+# values that are not used outside GameScene.
+# I happened to notice that `min_swipe_len` is not here, but works just
+# fine because it is only accessed in GameScene via current_level.min_swipe_len
+# Similarly, I am going to leave `time_limit_in_sec` out of here
+# because I think it will only be used in GameScene
 func grok_level(level_info):
 	slots_across = level_info.width
 	slots_down = level_info.height
