@@ -111,14 +111,9 @@ func new_player():
 func level_over():
 	# gray out block sprites if existing
 	stop_magnetism()
-	var existing_sprites = get_node(".").get_children()
+	var existing_sprites = get_tree().get_nodes_in_group("tiles")
 	for sprite in existing_sprites:
-		# only remove tiles from board
-		if "is_a_game_piece" in sprite:
-			## I have no idea why .get_node("TileSprite") is null sometimes
-			## It seems to be related to queue_freeing the shadow sprite
-			if sprite.has_node("TileSprite"):
-				sprite.get_node("TileSprite").set_modulate(Color(0.1,0.1,0.1, 1))
+		sprite.level_ended()
 	buttons.level_ended()
 
 # this is only to handle orphaned swipes
