@@ -18,16 +18,17 @@ func set_type(new_tile_type_ordinal):
 	mytile = Tile.instance()
 	mytile.set_tile_type(new_tile_type_ordinal)
 	# add Tile to scene
-	parent_scene.add_child(mytile)
+	add_child(mytile)
 
 	myshadow = Tile.instance()
 	myshadow.set_tile_type(new_tile_type_ordinal)
 	# remove collider from shadow so it ignores mouse
 	myshadow.get_node("CollisionShape2D").queue_free()
-	parent_scene.add_child(myshadow)
+	add_child(myshadow)
 
 func set_game_scene(game_scene):
 	parent_scene = game_scene
+	parent_scene.add_child(self)
 
 # update player sprite display
 func set_position(player_position):
