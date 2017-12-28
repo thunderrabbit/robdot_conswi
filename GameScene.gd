@@ -185,12 +185,12 @@ func _gravity_says_its_time():
 	gravity_called = true
 
 func start_gravity_timer():
-	var le_timer = get_node("Timer")
+	var le_timer = get_node("GravityTimer")
 	le_timer.set_wait_time(GRAVITY_TIMEOUT)
 	le_timer.start()
 
 func stop_gravity_timer():
-	var le_timer = get_node("Timer")
+	var le_timer = get_node("GravityTimer")
 	le_timer.stop()
 
 func start_magnetism():

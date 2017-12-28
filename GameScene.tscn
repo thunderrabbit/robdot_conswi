@@ -11,7 +11,7 @@ extents = Vector2( 78.3339, 27.8744 )
 
 script/script = ExtResource( 1 )
 
-[node name="Timer" type="Timer" parent="."]
+[node name="GravityTimer" type="Timer" parent="."]
 
 process_mode = 1
 wait_time = 1.0
@@ -61,7 +61,7 @@ caret/block_caret = false
 caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
-[connection signal="timeout" from="Timer" to="." method="_gravity_says_its_time"]
+[connection signal="timeout" from="GravityTimer" to="." method="_gravity_says_its_time"]
 
 [connection signal="input_event" from="Orphan_Swipe_Catcher" to="." method="_on_Orphan_Swipe_Catcher_input_event"]
 
