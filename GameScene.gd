@@ -115,6 +115,8 @@ func new_player():
 func level_over():
 	# gray out block sprites if existing
 	stop_magnetism()
+	stop_gravity_timer()
+	stop_level_timer()
 	var existing_sprites = get_tree().get_nodes_in_group("players")
 	for sprite in existing_sprites:
 		sprite.level_ended()
