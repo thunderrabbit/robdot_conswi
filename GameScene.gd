@@ -31,7 +31,13 @@ func _ready():
 	buttons = Buttons.new()			# TODO: add level restart button after lose level
 	Helpers.game_scene = self		# so Players know where to appear
 	print("Started Game Scene")
-	start_level(0)					# TODO: add level selection screen.  level 0 is my debug 
+	requested_play_level(0)
+
+func requested_replay_level():
+	requested_play_level(0)
+
+func requested_play_level(level):
+	start_level(level)					# TODO: add level selection screen.  level 0 is my debug 
 	new_player()
 	# tell the Magnetism timer to call Helpers.magnetism_called (every MAGNETISM_TIME seconds)
 	get_node("Magnetism").connect("timeout", get_node("/root/Helpers"), "magnetism_called", [])
@@ -53,20 +59,18 @@ func start_level(level_num):
 
 	# magnetism makes the nailed pieces fall (all pieces in board{})
 	start_magnetism()
-	
-	# TODO consider allowing the level definition to specify exactly
-	# what pieces to place on the board when starting
+
+	# Fill the level halfway, if max_tiles_avail allows it
 	if current_level.fill_level:
 		fill_game_board()
 
 	# buttons are kinda like a HUD but for input, not output
 	buttons.set_game_scene(self)
 
-	# the steering pad is the left/right buttons at bottom
-	buttons.add_steering_pad()
+	buttons.prepare_to_play_level(level_num)
 
 	if Helpers.debug_level == 0:
-		get_node("/root/GameScene/DebugOutput").queue_free()
+		get_node("/root/GameScene/DebugOutput").hide()
 
 func fill_game_board():
 	print("filling level")
@@ -106,12 +110,13 @@ func level_over():
 	stop_magnetism()
 	var existing_sprites = get_node(".").get_children()
 	for sprite in existing_sprites:
-		# do not remove slots from board
+		# only remove tiles from board
 		if "is_a_game_piece" in sprite:
 			## I have no idea why .get_node("TileSprite") is null sometimes
 			## It seems to be related to queue_freeing the shadow sprite
 			if sprite.has_node("TileSprite"):
 				sprite.get_node("TileSprite").set_modulate(Color(0.1,0.1,0.1, 1))
+	buttons.level_ended()
 
 # this is only to handle orphaned swipes
 func _on_Orphan_Swipe_Catcher_input_event( viewport, event, shape_idx ):
