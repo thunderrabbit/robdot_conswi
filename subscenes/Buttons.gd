@@ -8,11 +8,9 @@ var steering_pad = null
 
 func _init():
 	steering_pad = SteeringPad.instance()
-	steering_pad.set_pos(Helpers.steering_pad_pixels())
 	add_child(steering_pad)
 
 	endLevelButtons = EndLevelBut.instance()
-	endLevelButtons.set_alignment(endLevelButtons.ALIGN_CENTER)
 	add_child(endLevelButtons)
 
 func set_game_scene(game_scene):
@@ -23,10 +21,12 @@ func set_game_scene(game_scene):
 func prepare_to_play_level(level):
 	print("buttons preparing for level ", level)
 	# the steering pad is the left/right buttons at bottom
+	steering_pad.set_pos(Helpers.steering_pad_pixels())
 	steering_pad.show()
 	endLevelButtons.hide()
 
 func level_ended():
 	steering_pad.hide()
+	endLevelButtons.set_alignment(endLevelButtons.ALIGN_CENTER)
 	endLevelButtons.show()
 
