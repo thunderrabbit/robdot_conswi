@@ -6,19 +6,19 @@ const ITEM_SPRITE       = 3
 var TileDatabase = [
 	{
 		ITEM_NAME : "Dog",
-		ITEM_SPRITE : 0
+		ITEM_SPRITE : G.TYPE_DOG
 	},
 	{
 		ITEM_NAME : "Cat",
-		ITEM_SPRITE : 1
+		ITEM_SPRITE : G.TYPE_CAT
 	},
 	{
 		ITEM_NAME : "Pig",
-		ITEM_SPRITE : 2
+		ITEM_SPRITE : G.TYPE_PIG
 	},
 	{
 		ITEM_NAME : "Sheep",
-		ITEM_SPRITE : 3
+		ITEM_SPRITE : G.TYPE_SHEEP
 	}
 ]
 
