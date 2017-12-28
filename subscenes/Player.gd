@@ -21,8 +21,8 @@ func set_type(new_tile_type_ordinal):
 
 	myshadow = Tile.instance()
 	myshadow.set_tile_type(new_tile_type_ordinal)
-	# remove collider from shadow so it ignores mouse
-	myshadow.get_node("CollisionShape2D").queue_free()
+	# Tell Tile to tell its sprite it's a shadow
+	myshadow.is_shadow()
 	add_child(myshadow)
 
 # update player sprite display
@@ -35,7 +35,6 @@ func set_position(player_position):
 		if myshadow.my_sprite != null:
 			if should_show_shadow:
 				myshadow.my_sprite.show()
-				myshadow.my_sprite.set_modulate(Color(1,1,1, 0.3))
 			else:
 				myshadow.my_sprite.hide()
 
@@ -75,7 +74,7 @@ func unhighlight():
 
 func darken():
 	mytile.my_sprite.darken()
-	mytile.get_node("CollisionShape2D").queue_free()
+	mytile.cant_touch_this()
 
 func level_ended():
 	darken()
