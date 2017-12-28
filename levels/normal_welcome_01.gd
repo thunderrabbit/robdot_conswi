@@ -1,7 +1,5 @@
 extends "NormalLevel.gd"
 
 func _init():
-	width = 5
-	# prefer tiles = [[dog,3]] instead of debug_level = 1
-	debug_level = 1			# forces all tiles same color
+	tiles = [1,1,1,31415]	# without the  last number, the first three are not all used??
 	max_tiles_avail = 3
