@@ -271,3 +271,7 @@ func adjacent(pos1, pos2):
 
 func piece_exited(position, piece_type):
 	pass
+
+
+func _on_LevelTimer_timeout():
+	level_over()

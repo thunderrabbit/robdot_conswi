@@ -25,6 +25,13 @@ wait_time = 1.0
 one_shot = false
 autostart = false
 
+[node name="LevelTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
 [node name="Orphan_Swipe_Catcher" type="Area2D" parent="."]
 
 transform/pos = Vector2( 1040.32, 626.573 )
@@ -62,6 +69,8 @@ caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
 [connection signal="timeout" from="GravityTimer" to="." method="_gravity_says_its_time"]
+
+[connection signal="timeout" from="LevelTimer" to="." method="_on_LevelTimer_timeout"]
 
 [connection signal="input_event" from="Orphan_Swipe_Catcher" to="." method="_on_Orphan_Swipe_Catcher_input_event"]
 
