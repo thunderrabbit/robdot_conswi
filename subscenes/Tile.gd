@@ -22,6 +22,7 @@ func set_tile_type(my_tile_type):
 	tile_type = my_tile_type
 	my_sprite = get_node("TileSprite") # gets NIL if run in _ready
 	my_sprite.set_tile_type(tile_type)
+
 # called after piece gets nailed to board
 func become_swipable():
 	# I would think set_process_input(false) should do the same thing
