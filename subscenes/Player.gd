@@ -2,7 +2,8 @@ extends Node
 
 const Tile = preload("res://SubScenes/Tile.tscn")
 
-var tile_y_shadow = []	# Will hold the player and shadow while in motion
+var mytile = null	# visible in queue, while moving, when nailed
+var myshadow = null	# only visible when moving
 var parent_scene
 var my_position
 var should_show_shadow = false
