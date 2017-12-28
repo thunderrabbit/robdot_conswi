@@ -50,10 +50,10 @@ func queue_wo_fill():
 		queue_upcoming.append(new_player)
 
 	# Display queued pieces on top right
-	var x = slots_across-queue_length
+	var x = slots_across - queue_length
 	for tile in queue_upcoming:
 		tile.set_position(Vector2(x,0))
-		x = x+1		# TODO turn off shadows
+		x += 1		# TODO turn off shadows
 
 
 func queue_next():
