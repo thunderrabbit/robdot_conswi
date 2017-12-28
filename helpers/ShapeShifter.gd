@@ -37,7 +37,8 @@ func givenSwipe_lookupName(swipeCoordinates):
 		nameOfSwipe = bitmapNames[bitmapString]
 		print(nameOfSwipe)
 	else:
-		print("shape not in library")
+		print("shape not in library:")
+		print(bitmapString)
 	return nameOfSwipe
 
 # given coordinates of a swipe, return its width, height, top left, bottom right

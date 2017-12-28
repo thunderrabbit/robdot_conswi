@@ -228,5 +228,14 @@ var ShapeDatabase = {
 				1, 1, 1, 1,
 				1, 1, 1, 1,
 				1, 1, 1, 1,
-				1, 1, 1, 1]
+				1, 1, 1, 1],
+	"rightcobra":[4,
+				0, 0, 1, 1,
+				1, 0, 1, 0,
+				1, 1, 1, 0],
+	"babyleftcobra":[3,
+				1, 1, 0,
+				0, 1, 0,
+				0, 1, 1],
+	"last item has no trailing comma":[]
 }

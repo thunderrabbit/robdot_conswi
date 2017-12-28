@@ -31,7 +31,13 @@ func _ready():
 	buttons = Buttons.new()			# TODO: add level restart button after lose level
 	Helpers.game_scene = self		# so Players know where to appear
 	print("Started Game Scene")
-	start_level(0)					# TODO: add level selection screen.  level 0 is my debug 
+	requested_play_level(0)
+
+func requested_replay_level():
+	requested_play_level(0)
+
+func requested_play_level(level):
+	start_level(level)					# TODO: add level selection screen.  level 0 is my debug 
 	new_player()
 	# tell the Magnetism timer to call Helpers.magnetism_called (every MAGNETISM_TIME seconds)
 	get_node("Magnetism").connect("timeout", get_node("/root/Helpers"), "magnetism_called", [])
@@ -44,11 +50,8 @@ func start_level(level_num):
 
 	current_level = load(level_name).new()		# load() gets a GDScript and new() instantiates it
 	# now that we have loaded the level, we can tell the game how it wants us to run
-	Helpers.slots_across = current_level.level_width()
-	Helpers.slots_down = current_level.level_height()
+	Helpers.grok_level(current_level)	# so we have level info available everywhere
 	GRAVITY_TIMEOUT = current_level.gravity_timeout
-	Helpers.queue_length = current_level.queue_len + 1 # +1 accounts for current player)
-	Helpers.debug_level = current_level.debug_level
 
 	# TODO deal with the case that the current board is smaller then previous level
 	# in which case the slots_across will be too small to clear everything
@@ -56,20 +59,18 @@ func start_level(level_num):
 
 	# magnetism makes the nailed pieces fall (all pieces in board{})
 	start_magnetism()
-	
-	# TODO consider allowing the level definition to specify exactly
-	# what pieces to place on the board when starting
+
+	# Fill the level halfway, if max_tiles_avail allows it
 	if current_level.fill_level:
 		fill_game_board()
 
 	# buttons are kinda like a HUD but for input, not output
 	buttons.set_game_scene(self)
 
-	# the steering pad is the left/right buttons at bottom
-	buttons.add_steering_pad()
+	buttons.prepare_to_play_level(level_num)
 
 	if Helpers.debug_level == 0:
-		get_node("/root/GameScene/DebugOutput").queue_free()
+		get_node("/root/GameScene/DebugOutput").hide()
 
 func fill_game_board():
 	print("filling level")
@@ -79,10 +80,11 @@ func fill_game_board():
 		for down in range(Helpers.slots_down/2, Helpers.slots_down):
 			player_position = Vector2(across, down)
 
-			Helpers.instantiatePlayer(player_position)
-
-			# lock player into position on Helpers.board{}
-			nail_player()
+			if Helpers.instantiatePlayer(player_position):
+				# lock player into position on Helpers.board{}
+				nail_player()
+			else:
+				print("no more tiles available!")
 
 func new_player():
 	# turn off drop mode
@@ -96,22 +98,25 @@ func new_player():
 		level_over()
 		return
 
-	Helpers.instantiatePlayer(player_position)
-	player.set_show_shadow(true)
-	set_process(true)		# allows players to be moved
-	start_gravity_timer()
+	if Helpers.instantiatePlayer(player_position):
+		player.set_show_shadow(true)
+		set_process(true)		# allows players to be moved
+		start_gravity_timer()
+	else:
+		print("no more tiles available!")
 
 func level_over():
 	# gray out block sprites if existing
 	stop_magnetism()
 	var existing_sprites = get_node(".").get_children()
 	for sprite in existing_sprites:
-		# do not remove slots from board
+		# only remove tiles from board
 		if "is_a_game_piece" in sprite:
 			## I have no idea why .get_node("TileSprite") is null sometimes
 			## It seems to be related to queue_freeing the shadow sprite
 			if sprite.has_node("TileSprite"):
 				sprite.get_node("TileSprite").set_modulate(Color(0.1,0.1,0.1, 1))
+	buttons.level_ended()
 
 # this is only to handle orphaned swipes
 func _on_Orphan_Swipe_Catcher_input_event( viewport, event, shape_idx ):
