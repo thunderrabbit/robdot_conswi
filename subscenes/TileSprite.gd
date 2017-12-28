@@ -19,3 +19,6 @@ func highlight():
 func unhighlight():
 	set_modulate(Color(1,1,1,1))
 
+# Called when level ends
+func darken():
+	set_modulate(Color(1,1,1,0.5))
