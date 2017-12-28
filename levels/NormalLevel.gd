@@ -6,6 +6,7 @@ var fill_level = false		# true half fills level with tiles
 var gravity_timeout = 1		# seconds, tile moves down
 var min_swipe_len = 3		# higher is harder
 var max_tiles_avail = 32768	# including tiles used in fill_level = true
+var time_limit_in_sec = 3	# number of seconds to finish level
 var debug_level = 0			# boolean for now
 
 var queue_len = 3			# queue is upcoming tiles
