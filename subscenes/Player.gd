@@ -81,3 +81,4 @@ func unhighlight():
 func remove_yourself():
 	Helpers.board[my_position] = null
 	tile_y_shadow[0].queue_free()
+	tile_y_shadow[1].queue_free()		# release shadow
