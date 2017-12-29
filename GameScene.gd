@@ -12,7 +12,7 @@ const MIN_DROP_MODE_TIME = 0.004   # wait this long between move-down when in dr
 const MAGNETISM_TIME = 0.004
 
 var current_level	= null	# will hold level definition
-var requested_level = -1		# Will be read from level menu
+var requested_level = 0		# Will be read from level menu
 var elapsed_time = 10		# pretend it has been 10 seconds so input can definitely be processed upon start
 
 var input_x_direction	# -1 = left; 0 = stay; 1 = right

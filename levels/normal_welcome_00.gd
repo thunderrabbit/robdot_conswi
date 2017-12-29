@@ -1,8 +1,8 @@
 extends "NormalLevel.gd"
 
 func _init():
-	width = 25
-	height = 4
+	width = 15
+	height = 14
 	fill_level = true
 	gravity_timeout = 10
 	debug_level = 0
