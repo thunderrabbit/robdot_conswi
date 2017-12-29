@@ -36,6 +36,7 @@ func _ready():
 	level_reqs = LevelRequirements.instance()
 	add_child(level_reqs)
 
+	requested_level = Helpers.requested_level
 	# TODO: add START button overlay
 	# which will trigger this call:
 	requested_play_level(requested_level)

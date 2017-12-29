@@ -16,6 +16,11 @@ var slots_across = 0
 var slots_down = 0
 var debug_level = 0
 
+# Will be set by LevelSelection scene
+# LevelSelection scene will deal with level entry permissions
+# GameScene will deal with level DNE
+var requested_level = 52
+
 func _ready():
 	board = {}
 
