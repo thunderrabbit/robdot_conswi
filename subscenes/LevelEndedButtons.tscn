@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://subscenes/LevelEndedButtons.gd" type="Script" id=1]
-[ext_resource path="res://images/steering_pad.png" type="Texture" id=2]
+[ext_resource path="res://images/buttons/try_again.png" type="Texture" id=2]
+[ext_resource path="res://images/buttons/main_menu.png" type="Texture" id=3]
+[ext_resource path="res://images/buttons/next_level.png" type="Texture" id=4]
 
 [node name="ButtonGroup" type="ButtonGroup"]
 
@@ -16,16 +18,20 @@ margin/bottom = 40.0
 alignment = 0
 script/script = ExtResource( 1 )
 
-[node name="Button" type="Button" parent="."]
+[node name="LevelOverTitle" type="Sprite" parent="."]
+
+transform/scale = Vector2( 565.415, 167.919 )
+
+[node name="TryAgain" type="Button" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 153.0
-margin/bottom = 36.0
+margin/left = 4.0
+margin/top = 204.0
+margin/right = 538.0
+margin/bottom = 330.0
 toggle_mode = true
 click_on_press = true
 enabled_focus_mode = 2
@@ -34,6 +40,42 @@ text = "Replay Level"
 icon = ExtResource( 2 )
 flat = false
 
-[connection signal="pressed" from="Button" to="." method="_on_replay_pressed"]
+[node name="MainMenu" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 330.0
+margin/right = 538.0
+margin/bottom = 460.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Main Menu"
+icon = ExtResource( 3 )
+flat = false
+
+[node name="NextLevel" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 460.0
+margin/right = 538.0
+margin/bottom = 600.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Next Level"
+icon = ExtResource( 4 )
+flat = false
+
+[connection signal="pressed" from="TryAgain" to="." method="_on_replay_pressed"]
 
 
