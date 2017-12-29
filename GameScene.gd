@@ -64,7 +64,7 @@ func start_level(level_num):
 	# in which case the slots_across will be too small to clear everything
 	Helpers.clear_game_board()
 
-	level_reqs.display_requirements(current_level.level_requirements)
+	level_reqs.level_requires(current_level.level_requirements)
 	# magnetism makes the nailed pieces fall (all pieces in board{})
 	start_magnetism()
 
@@ -250,7 +250,9 @@ func piece_unclicked():
 	else:
 		if Helpers.debug_level > 0:
 			ShapeShifter.givenSwipe_showArray(swipe_array)
-		ShapeShifter.givenSwipe_lookupName(swipe_array)
+		var swipe_name = ShapeShifter.givenSwipe_lookupName(swipe_array)
+		level_reqs.swiped_piece(swipe_name)
+
 		for pos in swipe_array:
 			if Helpers.board[pos] != null:
 				Helpers.board[pos].remove_yourself()
