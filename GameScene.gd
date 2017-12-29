@@ -50,7 +50,10 @@ func requested_play_level(level):
 	# tell the Magnetism timer to call Helpers.magnetism_called (every MAGNETISM_TIME seconds)
 	get_node("Magnetism").connect("timeout", get_node("/root/Helpers"), "magnetism_called", [])
 
-func start_level(level_num):
+# If a too-large level_num is sent, this will
+# spin down through smaller numbers to find one.
+# Define levels in `levels/` directory
+func getExistingLevelGDScript(level_num):
 	var level_difficulty = "normal"		# TODO add Settings (same as Helpers.gd) and put "normal" and "welcome" into it
 	var level_group = "welcome"			#      Scene > Project Settings > Autoload
 	var level_name = ""
@@ -67,7 +70,10 @@ func start_level(level_num):
 			level_num = 1
 		if sanityCheck < 0:
 			print("This level name format isn't working ", level_name)
+	return levelGDScript
 
+func start_level(level_num):
+	var levelGDScript = getExistingLevelGDScript(level_num)
 	current_level = levelGDScript.new()		# load() gets a GDScript and new() instantiates it
 	# now that we have loaded the level, we can tell the game how it wants us to run
 	Helpers.grok_level(current_level)	# so we have level info available everywhere
