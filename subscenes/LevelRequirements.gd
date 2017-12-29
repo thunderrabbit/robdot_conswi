@@ -1,6 +1,12 @@
 extends Node2D
 
+signal levelwon
+
 var requirements = {}
+
+func _ready():
+	var gameScene = get_node("/root/GameScene")
+	connect("levelwon", gameScene, "_on_LevelWon")
 
 func level_requires(level_requirements):
 	requirements = level_requirements
@@ -26,3 +32,4 @@ func clarify_requirements():
 			requirements.erase(name)
 	if requirements.empty():
 		print("We won!!")
+		emit_signal("levelwon")
