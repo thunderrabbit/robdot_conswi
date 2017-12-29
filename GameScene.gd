@@ -2,6 +2,7 @@ extends Node2D
 
 const level_format = "res://levels/%s_%s_%02d.gd"		# normal_welcome_01
 const Buttons = preload("res://SubScenes/Buttons.gd")
+const LevelRequirements = preload("res://SubScenes/LevelRequirements.tscn")
 
 # gravity is what pulls the piece down slowly
 var GRAVITY_TIMEOUT = 1     # fake constant that will change with level
@@ -22,7 +23,7 @@ var gravity_called = false # true = move down 1 unit via gravity
 var player_position			# Vector2 of slot player is in
 var player					# Two (2) tiles: (player and shadow)
 var buttons					# Steering Pad / Start buttons
-
+var level_reqs				# HUD showing level requirements
 var swipe_color = 0				# the color of the current swipe
 var swipe_mode= false			# if true, then we are swiping
 var swipe_array = []			# the pieces in the swipe
@@ -31,6 +32,9 @@ func _ready():
 	buttons = Buttons.new()			# Buttons pre/post level
 	Helpers.game_scene = self		# so Players know where to appear
 	print("Started Game Scene")
+
+	level_reqs = LevelRequirements.instance()
+	add_child(level_reqs)
 
 	# TODO: add START button overlay
 	# which will trigger this call:
