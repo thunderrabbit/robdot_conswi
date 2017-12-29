@@ -1,4 +1,4 @@
-extends ButtonGroup
+extends Node2D
 
 var game_scene
 
@@ -10,6 +10,5 @@ func _ready():
 	# Initialization here
 	pass
 
-
-func _on_replay_pressed():
+func _on_TryAgain_pressed():
 	game_scene.requested_replay_level()
