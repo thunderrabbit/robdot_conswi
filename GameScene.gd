@@ -44,6 +44,10 @@ func _ready():
 func requested_replay_level():
 	requested_play_level(requested_level)
 
+func requested_next_level():
+	Helpers.requested_level = Helpers.requested_level + 1
+	requested_play_level(Helpers.requested_level)
+
 func requested_play_level(level):
 	start_level(level)					# TODO: add level selection screen.  level 0 is my debug 
 	new_player()

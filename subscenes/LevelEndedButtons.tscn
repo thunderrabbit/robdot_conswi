@@ -33,10 +33,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -54.0
-margin/top = -1.0
-margin/right = 480.0
-margin/bottom = 125.0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 534.0
+margin/bottom = 126.0
 toggle_mode = true
 click_on_press = true
 enabled_focus_mode = 2
@@ -51,10 +51,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -21.0
-margin/top = 123.0
-margin/right = 513.0
-margin/bottom = 253.0
+margin/left = 0.0
+margin/top = 126.0
+margin/right = 534.0
+margin/bottom = 256.0
 toggle_mode = true
 click_on_press = true
 enabled_focus_mode = 2
@@ -69,9 +69,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -61.0
+margin/left = 0.0
 margin/top = 256.0
-margin/right = 473.0
+margin/right = 534.0
 margin/bottom = 396.0
 toggle_mode = true
 click_on_press = true
@@ -82,5 +82,9 @@ icon = ExtResource( 5 )
 flat = false
 
 [connection signal="pressed" from="ButtonGroup/TryAgain" to="." method="_on_TryAgain_pressed"]
+
+[connection signal="pressed" from="ButtonGroup/MainMenu" to="." method="_on_MainMenu_pressed"]
+
+[connection signal="pressed" from="ButtonGroup/NextLevel" to="." method="_on_NextLevel_pressed"]
 
 
