@@ -64,6 +64,7 @@ func start_level(level_num):
 	# in which case the slots_across will be too small to clear everything
 	Helpers.clear_game_board()
 
+	level_reqs.display_requirements(current_level.level_requirements)
 	# magnetism makes the nailed pieces fall (all pieces in board{})
 	start_magnetism()
 
