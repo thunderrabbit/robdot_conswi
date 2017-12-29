@@ -11,4 +11,4 @@ func _ready():
 
 
 func _on_Button_pressed():
-	get_node("/root/SceneChanger").goto_scene("res://GameScene.tscn")
+	get_node("/root/SceneChanger").goto_scene("res://LevelScene.tscn")
