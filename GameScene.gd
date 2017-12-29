@@ -53,10 +53,22 @@ func requested_play_level(level):
 func start_level(level_num):
 	var level_difficulty = "normal"		# TODO add Settings (same as Helpers.gd) and put "normal" and "welcome" into it
 	var level_group = "welcome"			#      Scene > Project Settings > Autoload
-	var level_name = level_format % [level_difficulty, level_group, level_num]
+	var level_name = ""
 	print("starting Level ", level_name)
 
-	current_level = load(level_name).new()		# load() gets a GDScript and new() instantiates it
+	var levelGDScript = null
+	var sanityCheck = 100
+	while levelGDScript == null:
+		level_name = level_format % [level_difficulty, level_group, level_num]
+		levelGDScript = load(level_name)
+		level_num = level_num - 1
+		sanityCheck = sanityCheck - 1
+		if sanityCheck == 0:
+			level_num = 1
+		if sanityCheck < 0:
+			print("This level name format isn't working ", level_name)
+
+	current_level = levelGDScript.new()		# load() gets a GDScript and new() instantiates it
 	# now that we have loaded the level, we can tell the game how it wants us to run
 	Helpers.grok_level(current_level)	# so we have level info available everywhere
 	GRAVITY_TIMEOUT = current_level.gravity_timeout
