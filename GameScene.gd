@@ -28,7 +28,7 @@ var swipe_mode= false			# if true, then we are swiping
 var swipe_array = []			# the pieces in the swipe
 
 func _ready():
-	buttons = Buttons.new()			# TODO: add level restart button after lose level
+	buttons = Buttons.new()			# Buttons pre/post level
 	Helpers.game_scene = self		# so Players know where to appear
 	print("Started Game Scene")
 
