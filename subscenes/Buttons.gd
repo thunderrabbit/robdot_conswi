@@ -25,10 +25,11 @@ func prepare_to_play_level(level):
 	steering_pad.show()
 	endLevelButtons.hide()
 
-func level_ended():
+func level_ended(reason):
 	steering_pad.hide()
 	# removed set_alignment because it wasn't working when this was a ButtonGroup,
 	# and now that this is a Node2D, it crashes the app
 #	endLevelButtons.set_alignment(endLevelButtons.ALIGN_CENTER)
+	endLevelButtons.level_over_reason(reason)
 	endLevelButtons.show()
 

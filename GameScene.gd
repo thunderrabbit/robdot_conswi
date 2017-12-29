@@ -102,7 +102,7 @@ func new_player():
 	player_position = Vector2(Helpers.slots_across/2, 0)
 	# check game over
 	if Helpers.board[Vector2(player_position.x, player_position.y)] != null:
-		level_over()
+		level_over(G.LEVEL_NO_ROOM)
 		return
 
 	if Helpers.instantiatePlayer(player_position):
@@ -112,7 +112,7 @@ func new_player():
 	else:
 		print("no more tiles available!")
 
-func level_over():
+func level_over(reason):
 	# gray out block sprites if existing
 	stop_magnetism()
 	stop_gravity_timer()
@@ -120,7 +120,7 @@ func level_over():
 	var existing_sprites = get_tree().get_nodes_in_group("players")
 	for sprite in existing_sprites:
 		sprite.level_ended()
-	buttons.level_ended()
+	buttons.level_ended(reason)
 
 # this is only to handle orphaned swipes
 func _on_Orphan_Swipe_Catcher_input_event( viewport, event, shape_idx ):
@@ -288,4 +288,4 @@ func piece_exited(position, piece_type):
 
 
 func _on_LevelTimer_timeout():
-	level_over()
+	level_over(G.LEVEL_NO_TIME)
