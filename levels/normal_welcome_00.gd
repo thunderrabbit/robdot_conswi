@@ -4,7 +4,7 @@ func _init():
 	width = 15
 	height = 14
 	fill_level = true
-	gravity_timeout = 10
+	gravity_timeout = 1
 	debug_level = 0
 	tiles = [G.TYPE_DOG,
 			G.TYPE_DOG,
