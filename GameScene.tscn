@@ -32,6 +32,22 @@ wait_time = 1.0
 one_shot = false
 autostart = false
 
+[node name="LevelTimerLabel" type="Label" parent="."]
+
+anchor/top = 3
+rect/scale = Vector2( 5, 5 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 32.0
+margin/right = 28.0
+margin/bottom = 14.0
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="Orphan_Swipe_Catcher" type="Area2D" parent="."]
 
 transform/pos = Vector2( 1040.32, 626.573 )
@@ -57,10 +73,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 501.0
-margin/bottom = 231.0
+margin/left = 7.0
+margin/top = 27.0
+margin/right = 508.0
+margin/bottom = 258.0
 syntax_highlighting = false
 show_line_numbers = false
 highlight_all_occurrences = false

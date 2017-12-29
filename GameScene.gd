@@ -13,6 +13,7 @@ const MAGNETISM_TIME = 0.004
 
 var current_level	= null	# will hold level definition
 var elapsed_time = 10		# pretend it has been 10 seconds so input can definitely be processed upon start
+var time_label				# will display time remain
 
 var input_x_direction	# -1 = left; 0 = stay; 1 = right
 var input_y_direction	# -1 = down; 0 = stay; 1 = up, but not implemented
@@ -31,6 +32,7 @@ func _ready():
 	buttons = Buttons.new()			# Buttons pre/post level
 	Helpers.game_scene = self		# so Players know where to appear
 	print("Started Game Scene")
+	time_label = get_node("LevelTimerLabel")
 
 	level_reqs = LevelRequirements.instance()
 	add_child(level_reqs)
@@ -167,6 +169,7 @@ func _process(delta):
 		elapsed_time += delta
 		return
 
+	time_label.set_text(str(int(get_node("LevelTimer").get_time_left())))
 	# it has been long enough, so reset the timer before processing
 	elapsed_time = 0
 
