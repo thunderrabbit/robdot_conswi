@@ -16,7 +16,7 @@ var buttons_across    = 5
 
 func _ready():
     var button_loc = Vector2(0,0)
-    for level in range(50):
+    for level in range(1,51):
         button_loc = level_to_pixels(level)
         print(button_loc)
         var level_but = Button.new()
@@ -27,6 +27,8 @@ func _ready():
         add_child(level_but)
 
 func level_to_pixels(level):
+	# level-1 because we start with 1 above.  Otherwise gap appears in top left corner
+    level = level - 1
     var slot = Vector2(level % buttons_across, level / buttons_across)
     return Vector2(left_space+(SLOT_SIZE + slot_gap_h)*(slot.x), 
                     top_space+(SLOT_SIZE + slot_gap_v)*(slot.y))
