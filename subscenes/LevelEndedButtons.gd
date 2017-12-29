@@ -25,6 +25,7 @@ func _on_TryAgain_pressed():
 	game_scene.requested_replay_level()
 
 func _on_MainMenu_pressed():
+    Helpers.clear_game_board() # so no tiles appear behind the main menu buttons
     get_node("/root/SceneChanger").goto_scene("res://LevelScene.tscn")
 
 func _on_NextLevel_pressed():
